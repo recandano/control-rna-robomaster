@@ -1,17 +1,23 @@
 ---
 layout: default
-title: Evaluación 1 - Control por RNA
+title: Control por RNA
 nav_order: 5
 has_children: true
 permalink: /control-rna/
 ---
 
-# Evaluación 1 - Control por RNA
+# Control por RNA
 {: .no_toc }
 
 **DJI RoboMaster S1 + VICON + PyTorch**  
-Curso: Control Inteligente - Otoño 2026
+Curso: Control Inteligente -Universidad Iberoamericana- Otoño 2026
 
+**Integrantes:**
+- Regina Cándano 
+- Valerie Santos
+- Diego Bravo
+- Omar Rodríguez
+- Joel Rıo Valle
 ---
 
 ## Resumen
