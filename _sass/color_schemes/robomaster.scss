@@ -1,40 +1,140 @@
-// Colores generales
-$link-color: #2563eb;
-$btn-primary-color: #2563eb;
-$body-heading-color: #1f2937;
+// Paleta RoboMaster
+$cyan: #7DD3E8;
+$cyan-soft: #EAF9FC;
+$cyan-hover: #D7F3F8;
+$pink: #F3A6C5;
+$pink-soft: #FDEBF3;
+$navy: #20343B;
+$white: #FFFFFF;
 
-// Sidebar azul oscuro
-.side-bar,
-.side-bar .site-nav,
-.side-bar .nav-list {
-  background-color: #00a9c9 !important;
+// Colores generales del tema
+$link-color: #159BB5;
+$btn-primary-color: #159BB5;
+$body-heading-color: $navy;
+
+// Sidebar
+.side-bar {
+  background-color: $cyan-soft !important;
+  border-right: 1px solid #CFEAF0 !important;
 }
 
-// Texto del menú
+// Encabezado del sidebar
+.site-header {
+  background-color: $cyan !important;
+  border-bottom: none !important;
+}
+
+// Título principal
+.site-title,
+.site-title:visited {
+  color: $white !important;
+  font-weight: 600 !important;
+}
+
+// Zona de navegación
+.site-nav,
+.nav-list {
+  background-color: transparent !important;
+}
+
+// Links normales
 .nav-list .nav-list-link,
 .nav-list .nav-list-link:visited {
-  color: #ffffff !important;
+  color: $navy !important;
+  border-radius: 8px;
+  margin: 2px 8px;
+  transition: all 0.2s ease;
 }
 
 // Hover
 .nav-list .nav-list-link:hover {
-  background-color: #1e293b !important;
-  color: #f9a8d4 !important;
+  background-color: $pink-soft !important;
+  color: #B54D78 !important;
 }
 
-// Página activa
+// Página/sección activa
 .nav-list .nav-list-item.active > .nav-list-link {
-  background-color: #1e293b !important;
-  color: #f472b6 !important;
-  font-weight: 600;
+  background-color: $white !important;
+  color: #C65382 !important;
+  font-weight: 600 !important;
+
+  border-left: 4px solid $pink !important;
+  border-radius: 8px !important;
+
+  box-shadow: 0 2px 8px rgba(32, 52, 59, 0.08);
 }
 
-// Título del sitio
-.site-title {
-  color: #ffffff !important;
+// Padre abierto
+.nav-list .nav-list-item.active.has-children > .nav-list-link {
+  background-color: $pink-soft !important;
+  color: #B94F7A !important;
 }
 
-// Flechitas del menú
+// Flechas para expandir
 .nav-list-expander {
-  color: #f472b6 !important;
+  color: #C65382 !important;
+}
+
+// Hijos del menú
+.nav-list .nav-list .nav-list-link {
+  color: #35515A !important;
+}
+
+// Hover de hijos
+.nav-list .nav-list .nav-list-link:hover {
+  background-color: #FFFFFF !important;
+  color: #C65382 !important;
+}
+
+// Elemento hijo activo
+.nav-list .nav-list .nav-list-item.active > .nav-list-link {
+  background-color: $white !important;
+  color: #C65382 !important;
+  font-weight: 600 !important;
+}
+
+// Footer del sidebar
+.site-footer {
+  color: #57727A !important;
+  background-color: transparent !important;
+}
+
+// Links del contenido
+.main-content a {
+  color: #159BB5;
+}
+
+.main-content a:hover {
+  color: #C65382;
+}
+
+// Botones primarios
+.btn-primary,
+.btn-blue {
+  background-color: #159BB5 !important;
+  background-image: none !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+// Botones secundarios
+.btn:not(.btn-primary):not(.btn-blue) {
+  border-radius: 8px !important;
+}
+
+// Títulos
+.main-content h1,
+.main-content h2 {
+  color: $navy;
+}
+
+// Tablas
+.main-content table th {
+  background-color: $cyan-soft;
+  color: $navy;
+}
+
+// Código inline
+code {
+  background-color: #F7F9FA;
 }
