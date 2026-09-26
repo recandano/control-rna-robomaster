@@ -110,16 +110,3 @@ Si la instalación física del SDK utiliza una convención diferente para las ru
 
 Esta opción solamente intercambia las salidas `w3` y `w4` antes de transmitirlas al robot. No modifica ni reentrena las redes neuronales.
 
-## Evidencias recomendadas
-
-Para la entrega final conviene incluir:
-
-- fotografía del RoboMaster y del volumen VICON;
-- dataset experimental;
-- curvas de entrenamiento;
-- métricas de la planta directa;
-- métricas del controlador inverso;
-- captura del control de punto;
-- comparación de círculo esperado vs obtenido;
-- video del seguimiento físico;
-- código principal y scripts auxiliares.
