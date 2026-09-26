@@ -198,3 +198,61 @@ code {
 .nav-list-item.active > .nav-list-link {
   background-image: none !important;
 }
+
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.system-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid #D7EEF1;
+  border-radius: 14px;
+  padding: 18px 20px;
+
+  box-shadow: 0 3px 12px rgba(73, 99, 106, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.system-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 18px rgba(73, 99, 106, 0.08);
+}
+
+.system-label {
+  font-size: 0.82rem;
+  color: #6F9299;
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+
+.system-value {
+  font-size: 1.05rem;
+  color: #40575D;
+  font-weight: 600;
+}
+
+.result-card {
+  background: #FCEBF2;
+  border-color: #F4D5E2;
+}
+
+.result-value {
+  color: #B96F8E;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+// Responsive para celular
+@media (max-width: 700px) {
+  .system-grid {
+    grid-template-columns: 1fr;
+  }
+}
