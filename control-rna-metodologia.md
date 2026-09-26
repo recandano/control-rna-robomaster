@@ -1,43 +1,86 @@
 ---
 layout: default
-title: Metodología y preprocesamiento
-parent: Evaluación 1 - Control por RNA
+title: Metodología y datos
+parent: Reporte del proyecto
 nav_order: 1
-permalink: /control-rna-metodologia/
+permalink: /control-rna/metodologia/
 ---
 
-# Metodología y preprocesamiento
+# Metodología y datos
 
-## Plataforma experimental
+## Adquisición experimental
 
-La plataforma está formada por un RoboMaster S1 con ruedas Mecanum y un sistema VICON para medir la pose global. Durante la adquisición se registraron en un mismo dataset los comandos de rueda, velocidades medidas por ESC y posición/orientación del robot.
+La identificación del RoboMaster S1 se realizó a partir de datos obtenidos directamente del robot y del sistema VICON.
 
-El dataset original contiene **4,345 registros**. Se eliminó un timestamp duplicado, quedando **4,344 muestras**. El periodo de control nominal fue de **0.05 s (20 Hz)**.
+Durante las pruebas se aplicaron diferentes señales de excitación a las ruedas con el objetivo de observar el comportamiento del chasis en movimientos longitudinales, laterales y rotacionales. Para cada muestra se registraron tanto las señales enviadas como la respuesta física medida.
 
-## Variables utilizadas
+El CSV utilizado para entrenamiento contenía, entre otras variables:
 
-| Grupo | Variables | Uso |
-|---|---|---|
-| Comandos | `w1_cmd ... w4_cmd` | Entrenamiento de la planta CMD y del controlador inverso |
-| ESC | `w1_esc ... w4_esc` | Identificación directa del comportamiento real de las ruedas |
-| VICON | `x_vicon`, `y_vicon`, `yaw` | Pose global y cálculo de velocidades del cuerpo |
-| Etiquetas | `fase`, `etiqueta` | Filtrado de segmentos y exclusión de eventos no deseados |
+- Tiempo de adquisición;
+- Fase o tipo de excitación;
+- Comandos de movimiento;
+- Velocidades comandadas de las cuatro ruedas;
+- Velocidades reportadas por los ESC;
+- Posición global de VICON;
+- Orientación del robot.
+
+El archivo original contenía 4,345 registros. Durante la limpieza se eliminó un timestamp duplicado, por lo que el conjunto final quedó en 4,344 muestras.
+
+La frecuencia de trabajo para el procesamiento y el control se estableció aproximadamente en 20 Hz, equivalente a:
+`dt = 0.05 s`
 
 ## Preprocesamiento
 
-El pipeline realiza los siguientes pasos:
+### Conversión de unidades
 
-- conversión de posición VICON de milímetros a metros;
-- tratamiento de yaw con `unwrap` antes de derivar;
-- filtrado Savitzky-Golay para reducir ruido;
-- derivación con respecto al tiempo real del registro;
-- transformación de velocidades globales al marco local del robot;
-- división temporal **80/10/10** en train, validation y test;
-- estandarización con `StandardScaler` ajustado únicamente con Train;
-- estimación del retardo comando-respuesta usando Train/Validation.
+VICON reporta las posiciones en milímetros. Para trabajar de forma consistente con el controlador se realizó:
 
-El retardo identificado entre comandos de rueda y respuesta fue de aproximadamente **0.10 s**, equivalente a **2 pasos** de control.
+`x [m] = TX / 1000`
 
-## Por qué se usa el marco local
+`y [m] = TY / 1000`
 
-El movimiento que producen las ruedas depende de la orientación instantánea del robot. Por eso, antes de aprender la dinámica, las velocidades globales de VICON se transforman al marco del cuerpo del RoboMaster. Esto permite que la RNA relacione las RPM con `vx`, `vy` y `omega` de forma consistente independientemente de la orientación global.
+### Tratamiento de yaw
+
+El ángulo `yaw` presenta una discontinuidad natural entre `-π` y `π`. Antes de derivar la orientación se utilizó `unwrap` para evitar saltos artificiales, y posteriormente se aplicó `wrap_to_pi` al calcular errores angulares.
+
+### Filtrado
+
+La diferenciación amplifica el ruido de las mediciones. Para reducir este efecto se utilizó un filtro **Savitzky-Golay**, con ventana de siete muestras y polinomio de segundo orden.
+
+### Obtención de velocidades
+
+A partir de la posición medida por VICON y del tiempo real se estimaron:
+
+- velocidad global en X;
+- velocidad global en Y;
+- velocidad angular.
+
+Después, las velocidades globales se transformaron al marco local del robot mediante la orientación `yaw`.
+
+Esta transformación permite que las redes aprendan el movimiento desde el punto de vista del propio RoboMaster, independientemente de su orientación global dentro del laboratorio.
+
+## División de datos
+
+El dataset se dividió temporalmente de la siguiente forma:
+
+| Conjunto | Porcentaje |
+|---|---:|
+| Train | 80 % |
+| Validation | 10 % |
+| Test | 10 % |
+
+La división temporal evita que muestras casi idénticas y consecutivas aparezcan simultáneamente en entrenamiento y prueba.
+
+Los objetos `StandardScaler` se ajustaron únicamente con el conjunto de entrenamiento.
+
+## Retardo comando-respuesta
+
+El comportamiento del robot mostró un retraso entre el comando enviado y la respuesta observada.
+
+La búsqueda del retardo se realizó utilizando únicamente datos de Train/Validation. El mejor valor encontrado para la relación comando-respuesta fue de aproximadamente:
+
+**0.10 s**
+
+equivalente a **2 pasos** de 0.05 s.
+
+Este retardo fue considerado al entrenar la planta basada en comandos y al analizar el seguimiento de trayectoria.
