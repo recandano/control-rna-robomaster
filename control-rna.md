@@ -9,13 +9,9 @@ permalink: /control-rna/
 # Control por RNA
 
 **DJI RoboMaster S1 + VICON + PyTorch**
-
-**Curso:** Control Inteligente  
-**Universidad:** Universidad Iberoamericana  
-**Periodo:** Otoño 2026  
+Control Inteligente - Universidad Iberoamericana - Otoño 2026  
 
 **Integrantes:**
-
 - Regina Cándano
 - Valerie Santos
 - Diego Bravo
@@ -30,8 +26,8 @@ El control de un robot omnidireccional con ruedas Mecanum presenta retos que no 
 
 Por esta razón, el proyecto se desarrolló con un enfoque basado en datos. A partir de registros experimentales del RoboMaster S1 y mediciones de VICON se entrenaron dos redes neuronales:
 
-- una **RNA directa**, que aprende cómo responde el robot ante las velocidades de sus cuatro ruedas;
-- una **RNA inversa**, que estima qué comandos deben enviarse para producir un movimiento deseado.
+- Una red neuronal artificial (RNA) directa, que aprende cómo responde el robot ante las velocidades de sus cuatro ruedas;
+- Una red neuronal artificial(RNA) inversa, que estima qué comandos deben enviarse para producir un movimiento deseado.
 
 La idea general puede resumirse así:
 
@@ -39,7 +35,7 @@ La idea general puede resumirse así:
 
 y para el control:
 
-`movimiento deseado → RNA inversa → RPM de ruedas`
+`Movimiento deseado → RNA inversa → RPM de ruedas`
 
 Durante la ejecución física, VICON cierra el lazo:
 
