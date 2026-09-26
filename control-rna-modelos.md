@@ -18,7 +18,7 @@ La pregunta que responde es:
 
 ### Arquitectura
 
-Se utilizó una MLP con estructura:
+Se utilizó una MLP con estructura feedforward:
 
 `4 → 64 → 64 → 32 → 3`
 
@@ -30,7 +30,7 @@ Las salidas son:
 
 `[vx_body, vy_body, omega]`
 
-donde `vx_body` y `vy_body` representan las velocidades longitudinal y lateral en el marco del robot, y `omega` representa la velocidad angular.
+donde vx_body y vy_body representan las velocidades longitudinal y lateral en el marco del robot (sistema de coorenadas del propio robot), y omega representa la velocidad angular.
 
 Las capas ocultas utilizan activación SiLU y la salida es lineal.
 
@@ -46,7 +46,7 @@ Entradas:
 
 `[w1_esc, w2_esc, w3_esc, w4_esc]`
 
-Este modelo utiliza las velocidades realmente reportadas por los controladores de motor y representa la respuesta física observada.
+Este modelo utiliza las velocidades medidas realmente en las ruedas, por lo que refleja de manera más directa cómo respondió el robot durante las pruebas.
 
 ### Modelo CMD
 
@@ -54,7 +54,7 @@ Entradas:
 
 `[w1_cmd, w2_cmd, w3_cmd, w4_cmd]`
 
-Este modelo resulta útil para simulación, porque la RNA inversa genera precisamente comandos de rueda.
+Este modelo se utiliza principalmente en simulación, ya que recibe como entrada los mismos comandos de rueda que genera la RNA inversa.
 
 ## Resultados de identificación
 
@@ -63,7 +63,7 @@ Este modelo resulta útil para simulación, porque la RNA inversa genera precisa
 | Directo ESC | 0.0525 | 0.0739 | 0.2844 | 0.8793 |
 | Planta CMD | 0.0554 | 0.0898 | 0.2709 | 0.8856 |
 
-Los valores de `R²` global cercanos a 0.88 muestran que las redes capturan una parte importante del comportamiento observado del sistema.
+Los valores de R² global cercanos a 0.88 muestran que las redes capturan una parte importante del comportamiento observado del sistema.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/img/control-rna/loss_directo_esc.png"
@@ -118,9 +118,7 @@ De esta manera, no basta con copiar exactamente los comandos del dataset; tambi�
 | w3 | 27.13 | 0.342 |
 | w4 | 20.03 | 0.598 |
 
-Las métricas por rueda muestran que el problema inverso no es completamente unívoco. Sin embargo, al evaluar el movimiento producido después de pasar los comandos por la planta directa se obtiene:
-
-**R² global de consistencia ≈ 0.971**
+Las métricas por rueda muestran que el problema inverso no es completamente unívoco. Sin embargo, al evaluar el movimiento producido después de pasar los comandos por la planta directa se obtiene: R² global de consistencia ≈ 0.971
 
 Esta métrica es especialmente relevante porque evalúa si el controlador genera un movimiento correcto, aunque las RPM no coincidan exactamente con las observadas históricamente.
 
