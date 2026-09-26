@@ -42,6 +42,20 @@ Durante la ejecución física, VICON cierra el lazo:
 
 `VICON → error de pose → controlador → RNA inversa → RoboMaster → VICON`
 
+## Resumen del sistema
+
+| Elemento | Configuración |
+|---|---|
+| Plataforma | DJI RoboMaster S1 |
+| Localización | VICON |
+| Frecuencia de control | 20 Hz |
+| RNA directa | 4 → 64 → 64 → 32 → 3 |
+| RNA inversa | 3 → 64 → 64 → 32 → 4 |
+| Dataset | 4,344 muestras válidas |
+| Retardo identificado | 0.10 s |
+| Límite de ruedas | ±120 RPM |
+| Error final de punto | 1.18 cm |
+| Error radial medio | 2.25 cm |
 ## Objetivo general
 
 Desarrollar e implementar un sistema de identificación y control basado en redes neuronales artificiales para un DJI RoboMaster S1, utilizando VICON para validar su comportamiento en simulación y en pruebas físicas.
