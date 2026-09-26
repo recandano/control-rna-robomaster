@@ -1,6 +1,40 @@
-$link-color: #00a9c9;
-$btn-primary-color: #00a9c9;
+// Colores generales
+$link-color: #2563eb;
+$btn-primary-color: #2563eb;
 $body-heading-color: #1f2937;
-$sidebar-color: #f4f8fa;
-$search-background-color: #ffffff;
-$border-color: #dce5e9;
+
+// Sidebar azul oscuro
+.side-bar,
+.side-bar .site-nav,
+.side-bar .nav-list {
+  background-color: #00a9c9 !important;
+}
+
+// Texto del menú
+.nav-list .nav-list-link,
+.nav-list .nav-list-link:visited {
+  color: #ffffff !important;
+}
+
+// Hover
+.nav-list .nav-list-link:hover {
+  background-color: #1e293b !important;
+  color: #f9a8d4 !important;
+}
+
+// Página activa
+.nav-list .nav-list-item.active > .nav-list-link {
+  background-color: #1e293b !important;
+  color: #f472b6 !important;
+  font-weight: 600;
+}
+
+// Título del sitio
+.site-title {
+  color: #ffffff !important;
+}
+
+// Flechitas del menú
+.nav-list-expander {
+  color: #f472b6 !important;
+}
