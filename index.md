@@ -8,8 +8,7 @@ nav_order: 1
 
 ## Proyecto 1 - Control Inteligente
 
-En este proyecto se desarrolló un sistema de identificación y control
-basado en redes neuronales artificiales para un DJI RoboMaster S1.
+En este proyecto se desarrolló un sistema de identificación y control basado en redes neuronales artificiales para un DJI RoboMaster S1, utilizando VICON como referencia externa para medir la posición y orientación real del robot u cerrar el lazo de control.
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/img/control-rna/Zacarias.jpg"
@@ -19,26 +18,23 @@ basado en redes neuronales artificiales para un DJI RoboMaster S1.
    <em>Figura 1. DJI RoboMaster S1.</em>
 </p>
 
-El sistema utiliza VICON como referencia externa para obtener la posición
-y orientación real del robot y cerrar el lazo de control.
-
 El proyecto se desarrolló en cuatro etapas:
 
 - Adquisición y procesamiento de datos.
-- Identificación neuronal del RoboMaster.
-- Control neuronal de posición.
+- Identificación neuronal del comportamiento del robot.
+- Desarrollo de un controlador neuronal inverso;
 - Seguimiento de trayectoria circular.
+- Control de posición y seguimiento de trayectoria en el robot físico.
 
 ## Resultados principales
 
-En la validación física se obtuvo un error final de posición de
-**1.18 cm** para una referencia fija.
+En la validación física el robot alcanzó la referencia con un error final de posición de
+**1.18 cm**. 
 
 Para el seguimiento de una trayectoria circular de radio 0.40 m se obtuvo:
-
 - Error radial medio absoluto: **2.25 cm**
 - RMSE radial: **3.06 cm**
 - Error radial máximo: **8.11 cm**
 
-Utiliza el menú lateral para consultar la metodología, modelos,
+consulta el Reporte del proyecto en el menú lateral para consultar la metodología, modelos neuronales,
 controlador y resultados experimentales.
