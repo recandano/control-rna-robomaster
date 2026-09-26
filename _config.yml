@@ -6,7 +6,7 @@ theme: just-the-docs
 url: "https://recandano.github.io"
 baseurl: "/control-rna-robomaster"
 
-color_scheme: light
+color_scheme: robomaster
 
 aux_links:
   "Repositorio en GitHub":
