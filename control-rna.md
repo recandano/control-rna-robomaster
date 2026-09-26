@@ -9,7 +9,8 @@ permalink: /control-rna/
 # Control por RNA
 
 **DJI RoboMaster S1 + VICON + PyTorch**
-Control Inteligente - Universidad Iberoamericana - Otoño 2026  
+
+-Control Inteligente - Universidad Iberoamericana - Otoño 2026  
 
 **Integrantes:**
 - Regina Cándano
