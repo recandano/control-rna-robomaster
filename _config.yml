@@ -3,6 +3,9 @@ description: Proyecto 1 de Control Inteligente
 
 theme: just-the-docs
 
+mermaid:
+  version: "10.1.0"
+  
 url: "https://recandano.github.io"
 baseurl: "/control-rna-robomaster"
 
