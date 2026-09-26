@@ -21,7 +21,16 @@ y nuevamente:
 `RoboMaster → VICON`
 
 Este lazo se ejecuta aproximadamente cada 0.05 s, es decir, a 20 Hz.
-
+```mermaid
+flowchart LR
+    A[Referencia x, y, yaw] --> B[Error de pose]
+    B --> C[PI + Feedforward]
+    C --> D[RNA inversa]
+    D --> E[RPM w1 w2 w3 w4]
+    E --> F[RoboMaster S1]
+    F --> G[VICON]
+    G --> B
+```
 ## Control de posición
 
 En cada iteración se obtiene:
