@@ -1,51 +1,71 @@
 ---
 layout: default
-title: Control por RNA
-nav_order: 5
+title: Reporte del proyecto
+nav_order: 2
 has_children: true
 permalink: /control-rna/
 ---
 
 # Control por RNA
-{: .no_toc }
 
-**DJI RoboMaster S1 + VICON + PyTorch**  
-Curso: Control Inteligente -Universidad Iberoamericana- Otoño 2026
+**DJI RoboMaster S1 + VICON + PyTorch**
+
+**Curso:** Control Inteligente  
+**Universidad:** Universidad Iberoamericana  
+**Periodo:** Otoño 2026  
 
 **Integrantes:**
-- Regina Cándano 
+
+- Regina Cándano
 - Valerie Santos
 - Diego Bravo
 - Omar Rodríguez
-- Joel Rıo Valle
+- Joel Rio Valle
+
 ---
 
-## Resumen
+## Descripción general
 
-El objetivo de esta práctica fue identificar el comportamiento de un **DJI RoboMaster S1** mediante redes neuronales artificiales y utilizar el modelo aprendido para construir un controlador de posición y seguimiento de trayectoria.
+El control de un robot omnidireccional con ruedas Mecanum presenta retos que no siempre pueden representarse correctamente con un modelo ideal. En el sistema real aparecen deslizamiento, fricción, diferencias entre motores, saturación de actuadores y retrasos entre el comando enviado y el movimiento observado.
 
-El sistema combina dos fuentes principales de información: los comandos y velocidades de las cuatro ruedas Mecanum del RoboMaster y la pose global medida por **VICON**. El control físico se ejecuta a **20 Hz** y utiliza la pose de VICON como retroalimentación.
+Por esta razón, el proyecto se desarrolló con un enfoque basado en datos. A partir de registros experimentales del RoboMaster S1 y mediciones de VICON se entrenaron dos redes neuronales:
 
-![Flujo general]({{ site.baseurl }}/assets/img/control-rna/flujo_general.png)
+- una **RNA directa**, que aprende cómo responde el robot ante las velocidades de sus cuatro ruedas;
+- una **RNA inversa**, que estima qué comandos deben enviarse para producir un movimiento deseado.
 
-## Qué se implementó
+La idea general puede resumirse así:
 
-1. Limpieza y preprocesamiento del dataset experimental.
-2. RNA directa para caracterizar la dinámica del robot.
-3. RNA inversa para convertir movimiento deseado en comandos de rueda.
-4. Control de posición en lazo cerrado con VICON.
-5. Seguimiento circular en simulación y en el RoboMaster físico.
+`RPM de ruedas → RNA directa → movimiento del robot`
 
-## Resultado principal
+y para el control:
 
-En la validación física, el robot alcanzó el punto inicial del círculo con un **error final de 1.18 cm**. Para el círculo físico de radio **0.40 m**, se obtuvo un **error radial medio de 2.25 cm** y un **RMSE radial de 3.06 cm**.
+`movimiento deseado → RNA inversa → RPM de ruedas`
 
-![Comparativa física del círculo]({{ site.baseurl }}/assets/img/control-rna/comparativa_circulo.png)
+Durante la ejecución física, VICON cierra el lazo:
+
+`VICON → error de pose → controlador → RNA inversa → RoboMaster → VICON`
+
+## Objetivo general
+
+Desarrollar e implementar un sistema de identificación y control basado en redes neuronales artificiales para un DJI RoboMaster S1, utilizando VICON para validar su comportamiento en simulación y en pruebas físicas.
+
+## Objetivos específicos
+
+- Obtener un dataset experimental que relacione los comandos de las ruedas con el movimiento real del robot.
+- Procesar y sincronizar la información registrada.
+- Entrenar una RNA directa para aproximar la dinámica del chasis.
+- Entrenar una RNA inversa para generar comandos de rueda.
+- Implementar control de posición en lazo cerrado.
+- Llevar al robot a coordenadas globales de VICON.
+- Implementar seguimiento de trayectoria circular.
+- Comparar cuantitativamente la trayectoria esperada y la obtenida.
 
 ## Navegación del reporte
 
-- [Metodología y preprocesamiento]({{ site.baseurl }}/control-rna-metodologia/)
-- [Modelos neuronales]({{ site.baseurl }}/control-rna-modelos/)
-- [Control en lazo cerrado]({{ site.baseurl }}/control-rna-control/)
-- [Resultados y análisis]({{ site.baseurl }}/control-rna-resultados/)
-- [Ejecución y comandos]({{ site.baseurl }}/control-rna-ejecucion/)
+Las secciones del proyecto se encuentran separadas en las siguientes páginas:
+
+- **Metodología y datos:** adquisición, limpieza y preprocesamiento.
+- **Modelos neuronales:** RNA directa, RNA inversa y métricas.
+- **Control en lazo cerrado:** VICON, control de posición y seguimiento.
+- **Resultados:** simulación, prueba de punto, círculo y análisis de errores.
+- **Ejecución física:** conexiones, comandos, seguridad y procedimiento experimental.
