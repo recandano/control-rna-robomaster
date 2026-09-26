@@ -1,8 +1,13 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: Control por RNA - RoboMaster S1
+description: Proyecto 1 de Control Inteligente
+
 theme: just-the-docs
 
-url: https://just-the-docs.github.io
+url: "https://recandano.github.io"
+baseurl: "/control-rna-robomaster"
+
+color_scheme: light
 
 aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+  "Repositorio en GitHub":
+    - "https://github.com/recandano/control-rna-robomaster"
