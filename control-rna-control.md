@@ -1,59 +1,103 @@
 ---
 layout: default
 title: Control en lazo cerrado
-parent: Evaluación 1 - Control por RNA
+parent: Reporte del proyecto
 nav_order: 3
-permalink: /control-rna-control/
+permalink: /control-rna/control/
 ---
 
 # Control en lazo cerrado
 
-## Estructura del controlador
+## Idea general
 
-En ejecución física, la RNA no trabaja sola. El controlador utiliza VICON para cerrar el lazo y corregir el error en cada instante.
+Después de entrenar las redes, el objetivo fue utilizar la RNA inversa como parte de un controlador físico.
 
-![Lazo de control]({{ site.baseurl }}/assets/img/control-rna/lazo_control.png)
+El ciclo implementado es:
 
-El proceso en cada ciclo de 0.05 s es:
+`VICON → pose actual → error → controlador → RNA inversa → RPM → RoboMaster`
 
-1. VICON entrega la pose actual `[x, y, yaw]`.
-2. Se calcula el error con respecto a la referencia.
-3. El error global se transforma al marco local del robot.
-4. Se aplica compensación PI y, para trayectoria, feedforward.
-5. La RNA inversa convierte el movimiento deseado en RPM de las cuatro ruedas.
-6. Se aplican saturación y límite de cambio de RPM.
-7. Se envían los comandos al RoboMaster y se repite el ciclo.
+y nuevamente:
 
-## Seguridad de VICON
+`RoboMaster → VICON`
 
-Durante las pruebas se detectó que VICON puede devolver una traslación `[0, 0, 0]` cuando el segmento está marcado como `Occluded=True`. Por ello, la versión de ejecución física debe **rechazar frames ocluidos** y esperar una pose válida antes de generar comandos. Esto evita que un cero inválido sea interpretado como una posición real.
+Este lazo se ejecuta aproximadamente cada 0.05 s, es decir, a 20 Hz.
 
-## Control de punto
+## Control de posición
 
-El modo `point` recibe una coordenada global de VICON. Por ejemplo:
+En cada iteración se obtiene:
 
-```text
---target-x 0.15 --target-y 0.20
-```
+`pose_actual = [x, y, yaw]`
 
-no significa "avanzar 15 cm y 20 cm", sino llegar al punto absoluto `(0.15, 0.20)` m del sistema VICON.
+y se compara con:
 
-Si no se especifica `target-yaw-deg`, el código conserva la orientación inicial.
+`pose_deseada = [x_d, y_d, yaw_d]`
 
-## Seguimiento circular
+Se calcula el error global de posición y orientación. Después, el error en X/Y se transforma al marco local del robot.
 
-La referencia general se expresa como:
+El controlador combina:
 
-```text
-x(t) = xc + R sin(omega t)
-y(t) = yc + R cos(omega t)
-```
+- acción proporcional sobre el error de posición;
+- acción integral limitada para reducir error estacionario;
+- control de orientación;
+- feedforward cuando existe una trayectoria en movimiento.
 
-En la prueba física reportada se utilizó:
+La velocidad deseada resultante se transforma en RPM mediante la RNA inversa.
 
-- centro: `(0.15, -0.20)` m;
+## Seguimiento de trayectoria
+
+Para una trayectoria, además del error de posición se utiliza la velocidad analítica de la referencia como término feedforward.
+
+El esquema queda:
+
+`referencia + feedforward + corrección de error → RNA inversa → RPM`
+
+Los comandos pasan después por:
+
+- saturación absoluta;
+- limitación de cambio entre pasos;
+- envío mediante `chassis.drive_wheels(...)`.
+
+## Integración con VICON
+
+Durante las primeras pruebas apareció un problema importante: VICON puede devolver una traslación `[0, 0, 0]` cuando el segmento se encuentra marcado como:
+
+`Occluded = True`
+
+Si estos ceros se utilizaran como una pose real, el controlador asumiría incorrectamente que el robot está en el origen.
+
+Por esta razón se modificó la lectura para:
+
+1. solicitar un nuevo frame;
+2. comprobar los indicadores de oclusión de posición y orientación;
+3. utilizar únicamente una pose con `Occluded = False`;
+4. abortar si después de varios intentos no se obtiene una medición válida.
+
+Esta corrección fue necesaria antes de realizar las pruebas físicas finales.
+
+## Referencia circular
+
+La referencia original planteada fue:
+
+`x(t) = 0.15 + 0.30 sin(2t)`
+
+`y(t) = -0.20 + 0.30 cos(2t)`
+
+Durante las primeras pruebas se observó que la velocidad exigida provocaba saturación frecuente de los comandos en ±120 RPM.
+
+Para la validación física se utilizó una referencia con la misma estructura, pero más adecuada para observar el comportamiento real:
+
+- centro: `(0.15, -0.20) m`;
 - radio: `0.40 m`;
-- punto inicial: `(0.15, 0.20)` m;
-- velocidad angular de validación: aproximadamente `1.3 rad/s`.
+- velocidad angular reducida: aproximadamente `1.3 rad/s`.
 
-La reducción de velocidad respecto a la referencia rápida inicial permitió disminuir saturación y observar con mayor claridad el desempeño del controlador.
+La referencia experimental fue:
+
+`x(t) = 0.15 + 0.40 sin(1.3t)`
+
+`y(t) = -0.20 + 0.40 cos(1.3t)`
+
+Su punto inicial es:
+
+`(0.15, 0.20) m`
+
+Por ello, antes de ejecutar el círculo el robot se llevó a esa coordenada mediante el modo de control de punto.
