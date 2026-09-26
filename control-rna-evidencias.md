@@ -13,11 +13,14 @@ Esta sección reúne las principales evidencias utilizadas para documentar y val
 ## Sistema VICON
 
 <p align="center">
-  <img src="{{ site.baseurl }}/assets/img/control-rna/vicon.jpg"
-       alt="Sistema VICON"
-       width="650">
-  <br>
-  <em>Sistema VICON utilizado para medir la pose global del robot.</em>
+  <video width="750" controls>
+    <source src="{{ site.baseurl }}/assets/img/control-rna/circulobien.mp4" type="video/mp4">
+    Tu navegador no soporta la reproducción de video.
+  </video>
+</p>
+
+<p align="center">
+  <em>Seguimiento del RoboMaster S1 registrado durante la prueba con VICON.</em>
 </p>
 
 ## Entrenamiento de la RNA directa
