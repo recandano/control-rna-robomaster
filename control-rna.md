@@ -43,8 +43,6 @@ Durante la ejecución física, VICON cierra el lazo:
 `VICON → error de pose → controlador → RNA inversa → RoboMaster → VICON`
 
 ## Resumen del sistema
-## Resumen del sistema
-
 <div class="system-grid">
 
   <div class="system-card">
@@ -98,20 +96,21 @@ Durante la ejecución física, VICON cierra el lazo:
   </div>
 
 </div>
+
 ## Objetivo general
 
-Desarrollar e implementar un sistema de identificación y control basado en redes neuronales artificiales para un DJI RoboMaster S1, utilizando VICON para validar su comportamiento en simulación y en pruebas físicas.
+Desarrollar e implementar un sistema de identificación y control basado en redes neuronales artificiales para un DJI RoboMaster S1, utilizando VICON para validar su comportamiento en simulación y en físico.
 
 ## Objetivos específicos
 
-- Obtener un dataset experimental que relacione los comandos de las ruedas con el movimiento real del robot.
-- Procesar y sincronizar la información registrada.
-- Entrenar una RNA directa para aproximar la dinámica del chasis.
-- Entrenar una RNA inversa para generar comandos de rueda.
-- Implementar control de posición en lazo cerrado.
-- Llevar al robot a coordenadas globales de VICON.
-- Implementar seguimiento de trayectoria circular.
-- Comparar cuantitativamente la trayectoria esperada y la obtenida.
+- Generar un conjunto de datos que relacione los comandos enviados a las ruedas con el movimiento real del RoboMaster.
+- Organizar, limpiar y sincronizar los datos obtenidos durante las pruebas.
+- Entrenar una red neuronal directa que aprenda cómo responde el robot ante distintas velocidades de rueda.
+- Entrenar una red neuronal inversa capaz de calcular los comandos necesarios para producir un movimiento deseado.
+- Implementar un controlador de posición en lazo cerrado utilizando VICON como sistema de retroalimentación.
+- Llevar el robot a posiciones específicas dentro del sistema de coordenadas de VICON.
+- Hacer que el RoboMaster siga una trayectoria circular de referencia.
+- Comparar los resultados esperados con el movimiento obtenido realmente y evaluar el error del sistema.
 
 ## Navegación del reporte
 
