@@ -77,7 +77,7 @@ Los principales archivos utilizados para desarrollar y validar el sistema se enc
 
 ### Código principal
 
-[Ver / descargar código principal]({{ site.baseurl }}/assets/files/control-rna/control_rna_robomaster_completo.py){: .btn }
+[Ver / descargar código principal]({{ site.baseurl }}/assets/files/control-rna/control_rna_robomaster_corregido.py){: .btn }
 
 ### Registros de las pruebas físicas
 
@@ -87,6 +87,6 @@ Los principales archivos utilizados para desarrollar y validar el sistema se enc
 
 ### Análisis de resultados
 
-[Script de análisis]({{ site.baseurl }}/assets/files/control-rna/comparar_vicon.py){: .btn }
+[Script de análisis]({{ site.baseurl }}/assets/files/control-rna/grafica_comparativa.py){: .btn }
 
 [Métricas de las redes]({{ site.baseurl }}/assets/files/control-rna/metricas_resumen.json){: .btn }
