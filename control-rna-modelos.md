@@ -1,58 +1,115 @@
 ---
 layout: default
 title: Modelos neuronales
-parent: Evaluación 1 - Control por RNA
+parent: Reporte del proyecto
 nav_order: 2
-permalink: /control-rna-modelos/
+permalink: /control-rna/modelos/
 ---
 
 # Modelos neuronales
 
-## Arquitectura general
+## RNA directa: identificación de la planta
 
-Se entrenaron dos redes neuronales con PyTorch: una **directa**, que aprende el comportamiento del robot, y una **inversa**, que aprende los comandos necesarios para producir un movimiento deseado.
+La primera red neuronal aprende el comportamiento directo del RoboMaster.
 
-![Arquitecturas]({{ site.baseurl }}/assets/img/control-rna/arquitecturas_rna.png)
+La pregunta que responde es:
 
-## RNA directa
+> Si las cuatro ruedas giran con determinadas velocidades, ¿qué movimiento producirá el chasis?
 
-La red directa utiliza una MLP con arquitectura:
+### Arquitectura
 
-`4 -> 64 -> 64 -> 32 -> 3`
+Se utilizó una MLP con estructura:
 
-Entradas: velocidades de las cuatro ruedas.  
-Salidas: `vx_body`, `vy_body`, `omega`.
+`4 → 64 → 64 → 32 → 3`
 
-Las capas ocultas utilizan activación **SiLU** y la salida es lineal. El entrenamiento se realiza con pérdida MSE normalizada, optimizador AdamW, early stopping y gradient clipping.
+Las entradas son las velocidades de las cuatro ruedas:
 
-![Pérdida de la red directa]({{ site.baseurl }}/assets/img/control-rna/loss_directo_esc.png)
+`[w1, w2, w3, w4]`
 
-### Resultados de identificación
+Las salidas son:
+
+`[vx_body, vy_body, omega]`
+
+donde `vx_body` y `vy_body` representan las velocidades longitudinal y lateral en el marco del robot, y `omega` representa la velocidad angular.
+
+Las capas ocultas utilizan activación SiLU y la salida es lineal.
+
+El entrenamiento se realizó en PyTorch utilizando AdamW, pérdida cuadrática media normalizada, early stopping y gradient clipping.
+
+## Dos variantes de planta
+
+Se entrenaron dos versiones de la red directa.
+
+### Modelo ESC
+
+Entradas:
+
+`[w1_esc, w2_esc, w3_esc, w4_esc]`
+
+Este modelo utiliza las velocidades realmente reportadas por los controladores de motor y representa la respuesta física observada.
+
+### Modelo CMD
+
+Entradas:
+
+`[w1_cmd, w2_cmd, w3_cmd, w4_cmd]`
+
+Este modelo resulta útil para simulación, porque la RNA inversa genera precisamente comandos de rueda.
+
+## Resultados de identificación
 
 | Modelo | RMSE vx [m/s] | RMSE vy [m/s] | RMSE omega [rad/s] | R² global |
 |---|---:|---:|---:|---:|
 | Directo ESC | 0.0525 | 0.0739 | 0.2844 | 0.8793 |
 | Planta CMD | 0.0554 | 0.0898 | 0.2709 | 0.8856 |
 
-La caracterización logra un R² global cercano a **0.88**, suficiente para usarla como modelo auxiliar de la planta en simulación y como restricción física del controlador inverso.
+Los valores de `R²` global cercanos a 0.88 muestran que las redes capturan una parte importante del comportamiento observado del sistema.
 
-## RNA inversa
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/loss_directo_esc.png"
+       alt="Pérdida de entrenamiento de la RNA directa"
+       width="700">
+  <br>
+  <em>Curva de entrenamiento de la RNA directa basada en velocidades ESC.</em>
+</p>
 
-La red inversa tiene arquitectura:
+---
 
-`3 -> 64 -> 64 -> 32 -> 4`
+## RNA inversa: generación de comandos
 
-Entrada: cambio de pose local deseado en un paso de control: `dx_body`, `dy_body`, `dyaw`.  
-Salida: comandos `w1_cmd ... w4_cmd`.
+Una vez aprendida la relación entre ruedas y movimiento, se resolvió el problema inverso:
 
-![Pérdida del controlador inverso]({{ site.baseurl }}/assets/img/control-rna/loss_controlador_inverso.png)
+> Dado un pequeño cambio de pose deseado, ¿qué RPM deben enviarse a las ruedas?
 
-La función de pérdida combina dos objetivos:
+### Arquitectura
 
-1. reproducir los comandos de rueda observados en el dataset;
-2. asegurar que los RPM predichos, al pasar por la planta directa, produzcan el movimiento solicitado.
+La red inversa utiliza:
 
-Aunque el R² individual de algunas ruedas es moderado, la **consistencia física inversa + planta** alcanza un **R² global de 0.971**, que es una métrica más relacionada con el objetivo de control.
+`3 → 64 → 64 → 32 → 4`
+
+Entrada:
+
+`[dx_body, dy_body, dyaw]`
+
+Salida:
+
+`[w1_cmd, w2_cmd, w3_cmd, w4_cmd]`
+
+Cada entrada representa el pequeño movimiento que se desea producir durante un periodo de control de 0.05 s.
+
+## Función de pérdida
+
+El entrenamiento combina dos objetivos.
+
+El primero es supervisado: se penaliza la diferencia entre las RPM estimadas y las RPM registradas.
+
+El segundo introduce consistencia física:
+
+`movimiento deseado → RNA inversa → RPM → planta directa → movimiento predicho`
+
+De esta manera, no basta con copiar exactamente los comandos del dataset; también se busca que las RPM generadas produzcan el movimiento deseado según la planta aprendida.
+
+## Resultados de la RNA inversa
 
 | Salida | RMSE [RPM] | R² |
 |---|---:|---:|
@@ -60,3 +117,17 @@ Aunque el R² individual de algunas ruedas es moderado, la **consistencia físic
 | w2 | 28.77 | 0.383 |
 | w3 | 27.13 | 0.342 |
 | w4 | 20.03 | 0.598 |
+
+Las métricas por rueda muestran que el problema inverso no es completamente unívoco. Sin embargo, al evaluar el movimiento producido después de pasar los comandos por la planta directa se obtiene:
+
+**R² global de consistencia ≈ 0.971**
+
+Esta métrica es especialmente relevante porque evalúa si el controlador genera un movimiento correcto, aunque las RPM no coincidan exactamente con las observadas históricamente.
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/loss_controlador_inverso.png"
+       alt="Pérdida de entrenamiento del controlador inverso"
+       width="700">
+  <br>
+  <em>Curva de entrenamiento de la RNA inversa.</em>
+</p>
