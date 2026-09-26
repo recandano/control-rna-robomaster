@@ -11,7 +11,13 @@ nav_order: 1
 En este proyecto se desarrolló un sistema de identificación y control
 basado en redes neuronales artificiales para un DJI RoboMaster S1.
 
-![RoboMaster S1 utilizado en la práctica]({{ site.baseurl }}/assets/img/control-rna/Zacarias.jpg)
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/Zacarias.jpg"
+       alt="RoboMaster S1"
+       width="400">
+  <br>
+   <em>Figura 1. DJI RoboMaster S1.</em>
+</p>
 
 El sistema utiliza VICON como referencia externa para obtener la posición
 y orientación real del robot y cerrar el lazo de control.
