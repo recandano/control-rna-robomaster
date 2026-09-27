@@ -44,13 +44,12 @@ controlador y resultados experimentales.
 <div class="project-footer">
 
   <p>
-    © 2026 Universidad Iberoamericana ·
-    Portafolio desarrollado por <strong>Regina Cándano</strong> ·
+    Portafolio desarrollado por Regina Cándano·
     <a href="{{ site.baseurl }}/uso-ia/">Uso de IA</a>
   </p>
 
   <p class="footer-date">
-    <strong>Última actualización:</strong> 26 de septiembre de 2026
+    Última actualización: 26 de septiembre de 2026
   </p>
 
 </div>
