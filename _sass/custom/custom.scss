@@ -45,3 +45,37 @@
   font-size: 0.9rem;
   line-height: 1.5;
 }
+
+// Footer del proyecto
+.footer-divider {
+  margin-top: 60px;
+  margin-bottom: 28px;
+  border: 0;
+  border-top: 1px solid #d9ecef;
+}
+
+.project-footer {
+  font-size: 0.88rem;
+  color: #73898e;
+  padding-bottom: 30px;
+  line-height: 1.7;
+}
+
+.project-footer p {
+  text-align: left !important;
+  margin-bottom: 8px;
+}
+
+.project-footer a {
+  color: #62aeb8 !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.project-footer a:hover {
+  color: #b97894 !important;
+}
+
+.footer-date {
+  color: #86999d;
+}
