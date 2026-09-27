@@ -17,12 +17,12 @@ Durante estas pruebas se aplicaron distintas señales de excitación a las rueda
 
 El CSV utilizado para entrenamiento contenía, entre otras variables:
 
-- Tiempo de adquisición;
-- Fase o tipo de excitación;
-- Comandos de movimiento;
-- Velocidades comandadas de las cuatro ruedas;
-- Velocidades reportadas por los ESC;
-- Posición global de VICON;
+- Tiempo de adquisición.
+- Fase o tipo de excitación.
+- Comandos de movimiento.
+- Velocidades comandadas de las cuatro ruedas.
+- Velocidades reportadas por los ESC.
+- Posición global de VICON.
 - Orientación del robot.
 
 El archivo original contenía 4,345 registros. Durante la limpieza se eliminó un timestamp duplicado, por lo que el conjunto final quedó en 4,344 muestras.
