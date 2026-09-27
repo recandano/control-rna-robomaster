@@ -50,7 +50,7 @@ Para validar el controlador, se compararon los resultados obtenidos mediante la 
   <div class="comparison-card">
     <div class="comparison-title">Simulación</div>
 
-    <img src="{{ site.baseurl }}/assets/img/control-rna/fase3_punto_simulacion.png"
+    <img src="{{ site.baseurl }}/assets/img/control-rna/fase3_punto_trayectoria.png"
          alt="Control de posición en simulación">
 
     <div class="comparison-caption">
