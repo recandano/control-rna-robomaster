@@ -37,11 +37,11 @@ La simulación permitió verificar la lógica del controlador y detectar la satu
 ## Prueba física de posicionamiento
 
 Para colocar el robot en el inicio del círculo se utilizó el objetivo:
-x_d = 0.15 m y y_d = 0.20 m
+x_d = 0.15 m y y_d = 0.20 m.
 
-La prueba comenzó aproximadamente en:(-0.008, -0.007) m y terminó en:(0.160, 0.206) m
+La prueba comenzó aproximadamente en: (-0.008, -0.007) m y terminó en: (0.160, 0.206) m.
 
-El error final fue de: 1.18 cm
+El error final fue de: 1.18 cm.
 
 Este valor quedó dentro de la tolerancia aproximada de 3 cm utilizada durante la prueba.
 
@@ -61,7 +61,7 @@ El objetivo del modo de posición es converger a la coordenada solicitada; no se
 
 La validación física final se realizó con:
 
-- Centro:(0.15, -0.20) m;
+- Centro:(0.15, -0.20) m.
 - Radio: 0.40 m.
 
 La trayectoria medida por VICON se comparó con el círculo geométrico esperado.
@@ -100,7 +100,7 @@ También se observó un retraso aproximado de 0.10 s entre el momento en que se 
 
 ### Saturación de los motores 
 
-Para mantener una operación segura, los comandos de las ruedas se limitaron a: ±120 RPM
+Para mantener una operación segura, los comandos de las ruedas se limitaron a: ±120 RPM.
 
 Cuando el controlador calcula una velocidad superior a este límite, el comando se satura. Como consecuencia, el robot no puede reproducir exactamente el movimiento solicitado en esos instantes.
 
@@ -122,7 +122,7 @@ El proyecto permitió desarrollar y probar un sistema completo de identificació
 
 La RNA directa logró representar de manera satisfactoria el comportamiento del robot a partir de las velocidades de sus ruedas, obteniendo un R² global cercano a 0.88.
 
-Por otro lado, la RNA inversa fue capaz de generar comandos de rueda a partir del movimiento deseado. Al evaluarla junto con la planta neuronal se obtuvo una consistencia global de aproximadamente: R² = 0.971
+Por otro lado, la RNA inversa fue capaz de generar comandos de rueda a partir del movimiento deseado. Al evaluarla junto con la planta neuronal se obtuvo una consistencia global de aproximadamente: R² = 0.971.
 
 Las pruebas con el robot físico también mostraron buenos resultados. En el control de posición se alcanzó el punto objetivo con un error final de 1.18 cm mientras que en el seguimiento circular de radio 40 cm se obtuvo un error radial medio de 2.25 cm.
 
