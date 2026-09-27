@@ -3,3 +3,74 @@
   text-justify: inter-word;
   line-height: 1.7;
 }
+
+// Comparación simulación vs prueba física
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+
+.comparison-card {
+  background-color: rgba(255, 255, 255, 0.72);
+  border: 1px solid #d6eef1;
+  border-radius: 16px;
+  padding: 16px;
+
+  box-shadow: 0 3px 14px rgba(73, 99, 106, 0.06);
+}
+
+.comparison-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.comparison-title {
+  text-align: center;
+  font-weight: 700;
+  color: #52747b;
+  font-size: 1.05rem;
+}
+
+.comparison-caption {
+  margin-top: 12px;
+  text-align: center;
+  color: #6e858a;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.result-highlight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background-color: #fbe6ef;
+  border: 1px solid #f3d4e1;
+
+  border-radius: 12px;
+
+  padding: 12px 18px;
+  margin: 10px 0;
+}
+
+.result-number {
+  color: #b96f8e;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.result-description {
+  color: #657a80;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 800px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
