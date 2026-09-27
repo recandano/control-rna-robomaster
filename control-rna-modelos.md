@@ -30,7 +30,7 @@ Las salidas son:
 
 `[vx_body, vy_body, omega]`
 
-donde vx_body y vy_body representan las velocidades longitudinal y lateral en el marco del robot (sistema de coorenadas del propio robot), y omega representa la velocidad angular.
+donde vx_body y vy_body representan las velocidades longitudinal y lateral en el marco del robot (sistema de coordenadas del propio robot), y omega representa la velocidad angular.
 
 Las capas ocultas utilizan activación SiLU y la salida es lineal.
 
