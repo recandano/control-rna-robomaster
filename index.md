@@ -39,17 +39,3 @@ Para el seguimiento de una trayectoria circular de radio 0.40 m se obtuvo:
 Consulta el Reporte del proyecto en el menú lateral para consultar la metodología, modelos neuronales,
 controlador y resultados experimentales.
 
-<hr class="footer-divider">
-
-<div class="project-footer">
-
-  <p>
-    Portafolio desarrollado por Regina Cándano·
-    <a href="{{ site.baseurl }}/uso-ia/">Uso de IA</a>
-  </p>
-
-  <p class="footer-date">
-    Última actualización: 26 de septiembre de 2026
-  </p>
-
-</div>
