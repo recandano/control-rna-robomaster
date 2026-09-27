@@ -47,27 +47,27 @@
 }
 
 // Footer del proyecto
-.footer-divider {
+..footer-divider {
   margin-top: 60px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   border: 0;
   border-top: 1px solid #d9ecef;
 }
 
 .project-footer {
   font-size: 0.88rem;
-  color: #73898e;
-  padding-bottom: 30px;
+  color: #7a9095;
+  padding-bottom: 26px;
   line-height: 1.7;
 }
 
 .project-footer p {
   text-align: left !important;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .project-footer a {
-  color: #62aeb8 !important;
+  color: #67adb8 !important;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -77,5 +77,5 @@
 }
 
 .footer-date {
-  color: #86999d;
+  color: #8a9da1;
 }
