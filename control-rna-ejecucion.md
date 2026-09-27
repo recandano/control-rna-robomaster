@@ -18,48 +18,108 @@ Durante la ejecución se utilizaron dos interfaces de red simultáneamente:
 | Ethernet | Comunicación con VICON |
 
 En la sesión de prueba:
+<div class="system-grid">
 
-`IP local Wi-Fi PC = 192.168.2.34`
+  <div class="system-card">
+    <div class="system-label">IP local Wi-Fi PC</div>
+    <div class="system-value">192.168.2.34</div>
+  </div>
 
-`IP RoboMaster = 192.168.2.1`
+  <div class="system-card">
+    <div class="system-label">IP RoboMaster</div>
+    <div class="system-value">192.168.2.1</div>
+  </div>
 
-`VICON = 192.168.10.1:801`
+  <div class="system-card">
+    <div class="system-label">Servidor VICON</div>
+    <div class="system-value">192.168.10.1:801</div>
+  </div>
 
-El objeto de Tracker utilizado fue:
+  <div class="system-card">
+    <div class="system-label">Subject VICON</div>
+    <div class="system-value">Zacarias</div>
+  </div>
 
-`Subject = Zacarias`
+  <div class="system-card">
+    <div class="system-label">Segment VICON</div>
+    <div class="system-value">Zacarias</div>
+  </div>
 
-`Segment = Zacarias`
+</div>
 
-> La IP local del Wi-Fi puede cambiar entre sesiones. Debe verificarse con `ipconfig` antes de ejecutar el robot.
+{: .note }
+La IP local del Wi-Fi puede cambiar entre sesiones, por lo que debe verificarse con `ipconfig` antes de ejecutar el robot.
 
 ## Dependencias
 
-Para entrenamiento y simulación:
+### Entrenamiento y simulación
 
-- NumPy
-- Pandas
-- SciPy
-- scikit-learn
-- Matplotlib
-- PyTorch
+<div class="system-grid">
 
-Para ejecución física:
+  <div class="system-card">
+    <div class="system-label">Cálculo numérico</div>
+    <div class="system-value">NumPy</div>
+  </div>
 
-- SDK oficial de DJI RoboMaster;
-- VICON DataStream SDK (`vicon_dssdk`).
+  <div class="system-card">
+    <div class="system-label">Manejo de datos</div>
+    <div class="system-value">Pandas</div>
+  </div>
 
-Durante las pruebas se utilizó Python 3.8 para mantener compatibilidad con el SDK del RoboMaster.
+  <div class="system-card">
+    <div class="system-label">Procesamiento de señales</div>
+    <div class="system-value">SciPy</div>
+  </div>
+
+  <div class="system-card">
+    <div class="system-label">Preprocesamiento y métricas</div>
+    <div class="system-value">scikit-learn</div>
+  </div>
+
+  <div class="system-card">
+    <div class="system-label">Gráficas</div>
+    <div class="system-value">Matplotlib</div>
+  </div>
+
+  <div class="system-card">
+    <div class="system-label">Redes neuronales</div>
+    <div class="system-value">PyTorch</div>
+  </div>
+
+</div>
+
+### Ejecución física
+
+<div class="system-grid">
+
+  <div class="system-card">
+    <div class="system-label">Control del robot</div>
+    <div class="system-value">DJI RoboMaster SDK</div>
+  </div>
+
+  <div class="system-card">
+    <div class="system-label">Captura de movimiento</div>
+    <div class="system-value">VICON DataStream SDK</div>
+  </div>
+
+  <div class="system-card">
+    <div class="system-label">Entorno de ejecución</div>
+    <div class="system-value">Python 3.8</div>
+  </div>
+
+</div>
+
+Python 3.8 se utilizó durante las pruebas físicas para mantener compatibilidad con el SDK del RoboMaster.
 
 ## Modos principales
 
 | Modo | Función |
 |---|---|
-| `--mode train` | Entrena las redes |
-| `--mode simulate` | Simula seguimiento |
-| `--mode simulate-point` | Simula llegada a un punto |
-| `--mode point` | Lleva físicamente el robot a una coordenada VICON |
-| `--mode live` | Ejecuta seguimiento físico de trayectoria |
+| --mode train | Entrena las redes |
+| --mode simulate | Simula seguimiento |
+| --mode simulate-point | Simula llegada a un punto |
+| --mode point | Lleva físicamente el robot a una coordenada VICON |
+| --mode live | Ejecuta seguimiento físico de trayectoria |
 
 ## Ejemplo: control hacia un punto
 
@@ -77,36 +137,4 @@ Después de colocar el robot en el punto inicial del círculo:
 .venv\Scripts\python.exe control_rna_robomaster_completo.py --mode live --output-dir salida_control_rna --local-ip 192.168.2.34 --vicon-host 192.168.10.1:801 --vicon-subject Zacarias --vicon-segment Zacarias --duration 4.83
 ```
 
-La duración debe corresponder a la velocidad angular configurada en `trajectory_reference()`.
-
-## Seguridad
-
-La implementación incorpora:
-
-- saturación a ±120 RPM;
-- limitación de variación entre comandos;
-- `timeout` en `drive_wheels`;
-- envío de RPM cero al finalizar;
-- cierre de conexiones en `finally`;
-- posibilidad de detener mediante `Ctrl+C`;
-- rechazo de frames VICON ocluidos.
-
-Antes de cada prueba debe comprobarse:
-
-- Tracker en modo LIVE;
-- objeto `Zacarias` visible;
-- lectura válida de `[x, y, yaw]`;
-- área física despejada;
-- IP correcta del Wi-Fi;
-- orientación y orden de ruedas verificados.
-
-## Orden de ruedas
-
-El script conserva el orden de ruedas utilizado durante la adquisición del dataset.
-
-Si la instalación física del SDK utiliza una convención diferente para las ruedas traseras, existe la opción:
-
-`--sdk-swap-w3-w4`
-
-Esta opción solamente intercambia las salidas `w3` y `w4` antes de transmitirlas al robot. No modifica ni reentrena las redes neuronales.
-
+La duración debe corresponder a la velocidad angular configurada en trajectory_reference().
