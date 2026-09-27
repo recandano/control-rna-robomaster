@@ -39,71 +39,66 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
        width="700">
 </p>
 
-## Comparación entre simulación y prueba física
+## Simulación y validación física
 
-Para validar el controlador, se compararon los resultados obtenidos mediante la planta neuronal con las trayectorias registradas posteriormente durante las pruebas físicas con VICON.
+La simulación se utilizó para comprobar el funcionamiento general del controlador antes de realizar las pruebas con el RoboMaster real. Posteriormente, el sistema se validó físicamente utilizando VICON.
+
+Las referencias utilizadas en simulación y en las pruebas físicas no fueron exactamente las mismas. Por esta razón, los resultados se presentan como dos etapas de validación diferentes y no como una comparación directa punto por punto.
 
 ### Control de posición
 
-<div class="comparison-grid">
+#### Simulación
 
-  <div class="comparison-card">
-    <div class="comparison-title">Simulación</div>
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/fase3_punto_trayectoria.png"
+       alt="Control de posición en simulación"
+       width="700">
+  <br>
+  <em>Prueba simulada utilizada para verificar que la RNA inversa y la planta neuronal permitieran llevar el modelo hacia un punto objetivo.</em>
+</p>
 
-    <img src="{{ site.baseurl }}/assets/img/control-rna/fase3_punto_trayectoria.png"
-         alt="Control de posición en simulación">
+#### Prueba física
 
-    <div class="comparison-caption">
-      Resultado obtenido utilizando la RNA inversa y la planta neuronal.
-    </div>
-  </div>
-
-  <div class="comparison-card">
-    <div class="comparison-title">Prueba física</div>
-
-    <img src="{{ site.baseurl }}/assets/img/control-rna/comparativa_trayectoria.png"
-         alt="Control de posición físico">
-
-    <div class="comparison-caption">
-      Trayectoria real registrada por VICON durante la prueba con el RoboMaster.
-    </div>
-  </div>
-
-</div>
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/comparativa_trayectoria.png"
+       alt="Control de posición físico"
+       width="700">
+  <br>
+  <em>Trayectoria registrada por VICON durante la prueba física. La coordenada objetivo utilizada fue distinta a la empleada en simulación.</em>
+</p>
 
 <div class="result-highlight">
   <span class="result-number">1.18 cm</span>
-  <span class="result-description">Error final de posición</span>
+  <span class="result-description">Error final de posición en la prueba física</span>
 </div>
 
+---
 
 ### Seguimiento de trayectoria circular
 
-<div class="comparison-grid">
+#### Simulación
 
-  <div class="comparison-card">
-    <div class="comparison-title">Simulación</div>
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/fase4_trayectoria.png"
+       alt="Seguimiento circular en simulación"
+       width="700">
+  <br>
+  <em>Seguimiento de la trayectoria circular utilizada durante la etapa de simulación.</em>
+</p>
 
-    <img src="{{ site.baseurl }}/assets/img/control-rna/fase4_trayectoria.png"
-         alt="Seguimiento circular en simulación">
+La simulación permitió comprobar que el controlador podía seguir una referencia circular y también ayudó a identificar problemas como la saturación de los comandos de rueda.
 
-    <div class="comparison-caption">
-      Trayectoria de referencia y trayectoria obtenida mediante la simulación del controlador.
-    </div>
-  </div>
+#### Prueba física
 
-  <div class="comparison-card">
-    <div class="comparison-title">Prueba física</div>
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/comparativa_circulo.png"
+       alt="Seguimiento circular físico"
+       width="700">
+  <br>
+  <em>Comparación entre la trayectoria de referencia utilizada en la prueba física y la trayectoria registrada por VICON.</em>
+</p>
 
-    <img src="{{ site.baseurl }}/assets/img/control-rna/comparativa_circulo.png"
-         alt="Seguimiento circular físico">
-
-    <div class="comparison-caption">
-      Comparación entre el círculo de referencia y la trayectoria registrada por VICON.
-    </div>
-  </div>
-
-</div>
+Para la prueba con el RoboMaster real se ajustaron algunos parámetros de la referencia con respecto a la simulación. En particular, se utilizó un radio de 0.40 m y una velocidad angular aproximada de 1.3 rad/s con el objetivo de obtener un movimiento más estable durante la ejecución física.
 
 <div class="result-highlight">
   <span class="result-number">2.25 cm</span>
