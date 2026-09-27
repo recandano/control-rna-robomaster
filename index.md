@@ -18,7 +18,7 @@ En este proyecto se desarrolló un sistema de identificación y control basado e
    <em>Figura 1. DJI RoboMaster S1.</em>
 </p>
 
-El proyecto se desarrolló en cuatro etapas:
+El proyecto se desarrolló en cinco etapas:
 
 - Adquisición y procesamiento de datos.
 - Identificación neuronal del comportamiento del robot.
