@@ -99,15 +99,15 @@ Cada entrada representa el pequeño movimiento que se desea producir durante un 
 
 ## Función de pérdida
 
-El entrenamiento combina dos objetivos.
+El entrenamiento combina dos objetivos:
 
-El primero es supervisado: se penaliza la diferencia entre las RPM estimadas y las RPM registradas.
+- El primero es supervisado: se penaliza la diferencia entre las RPM estimadas y las RPM registradas.
 
-El segundo introduce consistencia física:
+- El segundo introduce consistencia física:
 
 `movimiento deseado → RNA inversa → RPM → planta directa → movimiento predicho`
 
-De esta manera, no basta con copiar exactamente los comandos del dataset; también se busca que las RPM generadas produzcan el movimiento deseado según la planta aprendida.
+De esta manera, no basta con copiar exactamente los comandos del dataset; también se busca que las RPM generadas produzcan el      movimiento deseado según la planta aprendida.
 
 ## Resultados de la RNA inversa
 
