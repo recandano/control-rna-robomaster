@@ -65,9 +65,9 @@ Si estos ceros se utilizaran como una pose real, el controlador asumiría incorr
 
 Por esta razón se modificó la lectura para:
 
-1. Solicitar un nuevo frame;
-2. Comprobar los indicadores de oclusión de posición y orientación;
-3. Utilizar únicamente una pose con Occluded = False;
+1. Solicitar un nuevo frame.
+2. Comprobar los indicadores de oclusión de posición y orientación.
+3. Utilizar únicamente una pose con Occluded = False.
 4. Abortar si después de varios intentos no se obtiene una medición válida.
 
 Esta corrección fue necesaria antes de realizar las pruebas físicas finales.
@@ -84,8 +84,8 @@ Durante las primeras pruebas se observó que la velocidad exigida provocaba satu
 
 Para la validación física se utilizó una referencia con la misma estructura, pero más adecuada para observar el comportamiento real:
 
-- Centro:(0.15, -0.20) m;
-- Radio: 0.40 m;
+- Centro:(0.15, -0.20) m.
+- Radio: 0.40 m.
 - Velocidad angular reducida: aproximadamente 1.3 rad/s.
 
 La referencia experimental fue:
@@ -94,6 +94,6 @@ La referencia experimental fue:
 
 `y(t) = -0.20 + 0.40 cos(1.3t)`
 
-Su punto inicial es: (0.15, 0.20) m
+Su punto inicial es: (0.15, 0.20) m.
 
 Por ello, antes de ejecutar el círculo el robot se llevó a esa coordenada mediante el modo de generación de trayectorias.
