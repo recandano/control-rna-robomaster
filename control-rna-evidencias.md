@@ -84,7 +84,7 @@ Para validar el controlador, se compararon los resultados obtenidos mediante la 
   <div class="comparison-card">
     <div class="comparison-title">Simulación</div>
 
-    <img src="{{ site.baseurl }}/assets/img/control-rna/fase4_trayectoria_simulacion.png"
+    <img src="{{ site.baseurl }}/assets/img/control-rna/fase4_trayectoria.png"
          alt="Seguimiento circular en simulación">
 
     <div class="comparison-caption">
