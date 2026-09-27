@@ -37,22 +37,11 @@ La simulación permitió verificar la lógica del controlador y detectar la satu
 ## Prueba física de posicionamiento
 
 Para colocar el robot en el inicio del círculo se utilizó el objetivo:
+x_d = 0.15 m y y_d = 0.20 m
 
-`x_d = 0.15 m`
+La prueba comenzó aproximadamente en:(-0.008, -0.007) m y terminó en:(0.160, 0.206) m
 
-`y_d = 0.20 m`
-
-La prueba comenzó aproximadamente en:
-
-`(-0.008, -0.007) m`
-
-y terminó en:
-
-`(0.160, 0.206) m`
-
-El error final fue de:
-
-**1.18 cm**
+El error final fue de: 1.18 cm
 
 Este valor quedó dentro de la tolerancia aproximada de 3 cm utilizada durante la prueba.
 
@@ -72,8 +61,8 @@ El objetivo del modo de posición es converger a la coordenada solicitada; no se
 
 La validación física final se realizó con:
 
-- centro: `(0.15, -0.20) m`;
-- radio: `0.40 m`.
+- Centro:(0.15, -0.20) m;
+- Radio: 0.40 m.
 
 La trayectoria medida por VICON se comparó con el círculo geométrico esperado.
 
@@ -95,59 +84,48 @@ La trayectoria medida por VICON se comparó con el círculo geométrico esperado
 | Error radial máximo | **8.11 cm** |
 | Error medio / radio | **5.6 %** |
 
-La forma obtenida conserva claramente la geometría circular. El error máximo aparece principalmente en regiones transitorias, mientras que el error medio es considerablemente menor.
+La trayectoria obtenida mantiene en general la forma circular esperada. Las mayores diferencias aparecen principalmente durante los cambios de movimiento y al inicio del seguimiento, mientras que durante la mayor parte del recorrido el error se mantiene considerablemente menor.
 
 ## Análisis de errores
 
 ### Deslizamiento de las ruedas Mecanum
 
-El movimiento depende del contacto de múltiples rodillos con el piso. Esto provoca deslizamiento longitudinal y lateral y hace que la respuesta real varíe respecto al modelo.
+El movimiento del RoboMaster depende del contacto de los rodillos de las ruedas Mecanum con el piso. Debido a esto, pueden presentarse pequeños deslizamientos tanto hacia adelante como de forma lateral, provocando que el movimiento real no coincida exactamente con el predicho por el modelo.
 
 ### Comando frente a velocidad real
+Las RPM que se envían como comando a las ruedas no siempre son exactamente iguales a las velocidades que realmente alcanzan los motores. Por esta razón se utilizaron dos modelos directos: uno basado en los comandos enviados y otro basado en las velocidades medidas por los ESC.
 
-Las RPM comandadas no siempre coinciden exactamente con las velocidades reportadas por los ESC. Esta diferencia motivó el uso de dos modelos directos.
+### Retardo en la respuesta
+También se observó un retraso aproximado de 0.10 s entre el momento en que se envía un comando y el instante en que se observa su efecto en el movimiento del robot. Este retardo puede afectar principalmente el seguimiento de trayectorias cuando la referencia cambia rápidamente
 
-### Retardo dinámico
+### Saturación de los motores 
 
-El retardo aproximado de 0.10 s afecta el seguimiento cuando la referencia cambia rápidamente.
+Para mantener una operación segura, los comandos de las ruedas se limitaron a: ±120 RPM
 
-### Saturación
+Cuando el controlador calcula una velocidad superior a este límite, el comando se satura. Como consecuencia, el robot no puede reproducir exactamente el movimiento solicitado en esos instantes.
 
-Los comandos fueron limitados a:
+### Ruido en las mediciones de VICON
 
-`±120 RPM`
+Aunque VICON permite medir la posición del robot con buena precisión, al calcular las velocidades a partir de estas posiciones también se amplifican pequeñas variaciones de las mediciones. Para disminuir este efecto se utilizó un filtro Savitzky-Golay antes de realizar la derivación.
 
-Cuando la referencia exige velocidades mayores, el controlador ya no puede reproducir exactamente el movimiento solicitado.
-
-### Ruido de VICON
-
-La diferenciación de posición amplifica pequeñas variaciones de medición. El filtrado Savitzky-Golay reduce este efecto sin eliminar por completo la dinámica.
-
-### Ambigüedad de la dinámica inversa
-
-Distintas combinaciones de RPM pueden producir movimientos similares. Por ello, algunos `R²` individuales de rueda son modestos, mientras que la consistencia global del movimiento es mucho mayor.
+### Comportamiento de la red inversa
+En el RoboMaster, un mismo movimiento puede obtenerse con combinaciones de RPM ligeramente diferentes. Por esta razón, la red inversa no necesariamente reproduce exactamente los comandos registrados durante las pruebas. Sin embargo, al evaluar el movimiento generado por estos comandos mediante la planta directa se obtuvo una consistencia considerablemente mayor.
 
 ## Interpretación general
 
-Los resultados físicos muestran dos comportamientos importantes:
-
-1. el controlador es capaz de llevar el robot a una posición fija con error del orden de centímetros;
-2. la trayectoria circular real conserva la forma esperada y presenta un error radial medio relativamente pequeño respecto al radio de referencia.
-
-Esto confirma que la red neuronal no se utilizó únicamente como modelo de simulación, sino como parte efectiva de un sistema de control en tiempo real.
+Los resultados de las pruebas físicas muestran que el controlador fue capaz de cumplir los dos objetivos principales del proyecto. En la prueba de posicionamiento, el RoboMaster logró llegar al punto solicitado con un error final del orden de centímetros. Por otro lado, durante el seguimiento de trayectoria, el robot consiguió conservar la forma circular de referencia con un error relativamente pequeño respecto al radio utilizado.
+Estos resultados muestran que las redes neuronales no se utilizaron únicamente para representar el comportamiento del RoboMaster en simulación, sino que también formaron parte del controlador utilizado directamente sobre el robot físico.
 
 ## Conclusiones
 
-El proyecto completó el ciclo completo de identificación y control basado en datos.
+El proyecto permitió desarrollar y probar un sistema completo de identificación y control para el RoboMaster S1 utilizando datos experimentales y redes neuronales.
 
-La RNA directa logró representar una parte importante de la dinámica del RoboMaster, con `R²` global cercano a 0.88.
+La RNA directa logró representar de manera satisfactoria el comportamiento del robot a partir de las velocidades de sus ruedas, obteniendo un R² global cercano a 0.88.
 
-La RNA inversa, evaluada en conjunto con la planta aprendida, alcanzó una consistencia global de aproximadamente:
+Por otro lado, la RNA inversa fue capaz de generar comandos de rueda a partir del movimiento deseado. Al evaluarla junto con la planta neuronal se obtuvo una consistencia global de aproximadamente: R² = 0.971
 
-**R² = 0.971**
+Las pruebas con el robot físico también mostraron buenos resultados. En el control de posición se alcanzó el punto objetivo con un error final de 1.18 cm mientras que en el seguimiento circular de radio 40 cm se obtuvo un error radial medio de 2.25 cm.
 
-En el robot físico se obtuvo un error final de 1.18 cm en control de posición y un error radial medio de 2.25 cm durante la trayectoria circular de radio 40 cm.
+Las principales diferencias entre el comportamiento esperado y el observado se deben a factores propios del sistema real, como el deslizamiento de las ruedas Mecanum, la saturación de los motores, el retardo entre los comandos y la respuesta del robot, y las variaciones que no quedan completamente representadas por el modelo.
 
-Las principales limitaciones siguen asociadas a deslizamiento, saturación, retardo y dinámica temporal no modelada explícitamente.
-
-Como trabajo futuro sería interesante incluir historial de comandos, velocidad actual del cuerpo y arquitecturas recurrentes para representar mejor los transitorios.
+Como mejora futura, podría incorporarse información de instantes anteriores, como comandos y velocidades previas, para que la red tenga en cuenta la evolución temporal del movimiento. También podrían probarse arquitecturas recurrentes para mejorar la respuesta durante los transitorios.
