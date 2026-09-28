@@ -32,9 +32,13 @@ Las salidas son:
 
 donde vx_body y vy_body representan las velocidades longitudinal y lateral en el marco del robot (sistema de coordenadas del propio robot), y omega representa la velocidad angular.
 
-Las capas ocultas utilizan activación SiLU y la salida es lineal.
+Las capas ocultas utilizan activación SiLU y la salida es lineal. 
 
-El entrenamiento se realizó en PyTorch utilizando AdamW, pérdida cuadrática media normalizada, early stopping y gradient clipping.
+El entrenamiento se realizó en PyTorch con las siguientes características:
+* **Optimizador:** AdamW (Learning rate = 1e-3, Weight decay = 1e-5).
+* **Función de pérdida:** Error Cuadrático Medio (MSE) sobre datos normalizados con `StandardScaler`.
+* **Regularización:** Early stopping con paciencia de 70 épocas y gradient clipping (max norm = 5.0).
+* **Batch size:** 128.
 
 ## Dos variantes de planta
 
@@ -99,15 +103,16 @@ Cada entrada representa el pequeño movimiento que se desea producir durante un 
 
 ## Función de pérdida
 
-El entrenamiento combina dos objetivos:
+El entrenamiento combina dos objetivos en una función de pérdida compuesta:
 
-- El primero es supervisado: se penaliza la diferencia entre las RPM estimadas y las RPM registradas.
+`L_total = L_supervisada + 0.40 * L_consistencia`
 
-- El segundo introduce consistencia física:
+1. **Pérdida supervisada (`L_supervisada`):** Penaliza la diferencia entre las RPM estimadas por la red y las RPM reales registradas en el dataset.
+2. **Consistencia física (`L_consistencia`):** Evalúa el resultado a través del siguiente ciclo:
+   `movimiento deseado → RNA inversa → RPM → planta directa → movimiento predicho`
+   Se penaliza la diferencia entre el movimiento deseado original y el movimiento predicho final.
 
-`movimiento deseado → RNA inversa → RPM → planta directa → movimiento predicho`
-
-De esta manera, no basta con copiar exactamente los comandos del dataset; también se busca que las RPM generadas produzcan el      movimiento deseado según la planta aprendida.
+De esta manera, no basta con copiar exactamente los comandos del dataset; también se busca que las RPM generadas produzcan el movimiento deseado según la dinámica aprendida del chasis.
 
 ## Resultados de la RNA inversa
 
@@ -118,7 +123,14 @@ De esta manera, no basta con copiar exactamente los comandos del dataset; tambi�
 | w3 | 27.13 | 0.342 |
 | w4 | 20.03 | 0.598 |
 
-Las métricas por rueda muestran que el problema inverso no es completamente unívoco. Sin embargo, al evaluar el movimiento producido después de pasar los comandos por la planta directa se obtiene: R² global de consistencia ≈ 0.971
+Las métricas por rueda muestran que el problema inverso no es completamente unívoco. Sin embargo, al evaluar el movimiento producido después de pasar los comandos por la planta directa se obtiene: 
+
+<div class="results-row" style="justify-content: center;">
+  <div class="result-highlight" style="flex: none; width: 50%;">
+    <span class="result-number">0.971</span>
+    <span class="result-description">R² global de consistencia (movimiento real)</span>
+  </div>
+</div>
 
 Esta métrica es especialmente relevante porque evalúa si el controlador genera un movimiento correcto, aunque las RPM no coincidan exactamente con las observadas históricamente.
 
