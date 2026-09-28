@@ -56,11 +56,9 @@ x_d = 0.15 m y y_d = 0.20 m.
 
 La prueba comenzó aproximadamente en: (-0.008, -0.007) m y terminó en: (0.160, 0.206) m.
 
-<div class="results-row" style="justify-content: center;">
-  <div class="result-highlight" style="flex: none; width: 60%;">
-    <span class="result-number">1.18 cm</span>
-    <span class="result-description">Error final de posicionamiento</span>
-  </div>
+<div class="result-highlight">
+  <span class="result-number">1.18 cm</span>
+  <span class="result-description">Error final de posicionamiento</span>
 </div>
 
 Este valor quedó dentro de la tolerancia aproximada de 3 cm utilizada durante la prueba.
