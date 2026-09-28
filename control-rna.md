@@ -85,14 +85,14 @@ Durante la ejecución física, VICON cierra el lazo:
     <div class="system-value">±120 RPM</div>
   </div>
 
-  <div class="system-card result-card">
-    <div class="system-label">Error final de punto</div>
-    <div class="system-value result-value">1.18 cm</div>
+  <div class="system-card">
+  <div class="system-label">Error final de punto</div>
+  <div class="system-value">1.18 cm</div>
   </div>
 
-  <div class="system-card result-card">
-    <div class="system-label">Error radial medio</div>
-    <div class="system-value result-value">2.25 cm</div>
+  <div class="system-card">
+  <div class="system-label">Error radial medio</div>
+  <div class="system-value">2.25 cm</div>
   </div>
 
 </div>
