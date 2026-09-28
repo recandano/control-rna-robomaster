@@ -14,13 +14,28 @@ Antes de realizar pruebas con el robot físico, el controlador se evaluó utiliz
 
 Los resultados obtenidos fueron:
 
-| Métrica | Resultado |
-|---|---:|
-| RMSE de posición | 0.0926 m |
-| MAE de posición | 0.0832 m |
-| Error máximo | 0.1518 m |
-| RMSE de yaw | 0.0983 rad |
-| Comando máximo | 120 RPM |
+<div class="system-grid">
+  <div class="system-card">
+    <div class="system-label">RMSE de posición</div>
+    <div class="system-value">9.26 cm</div>
+  </div>
+  <div class="system-card">
+    <div class="system-label">MAE de posición</div>
+    <div class="system-value">8.32 cm</div>
+  </div>
+  <div class="system-card">
+    <div class="system-label">Error máximo</div>
+    <div class="system-value">15.18 cm</div>
+  </div>
+  <div class="system-card">
+    <div class="system-label">RMSE de yaw</div>
+    <div class="system-value">0.098 rad</div>
+  </div>
+  <div class="system-card">
+    <div class="system-label">Comando máximo</div>
+    <div class="system-value">120 RPM</div>
+  </div>
+</div>
 
 <p align="center">
   <img src="{{ site.baseurl }}/assets/img/control-rna/fase4_trayectoria.png"
@@ -41,7 +56,12 @@ x_d = 0.15 m y y_d = 0.20 m.
 
 La prueba comenzó aproximadamente en: (-0.008, -0.007) m y terminó en: (0.160, 0.206) m.
 
-El error final fue de: 1.18 cm.
+<div class="results-row" style="justify-content: center;">
+  <div class="result-highlight" style="flex: none; width: 60%;">
+    <span class="result-number">1.18 cm</span>
+    <span class="result-description">Error final de posicionamiento</span>
+  </div>
+</div>
 
 Este valor quedó dentro de la tolerancia aproximada de 3 cm utilizada durante la prueba.
 
