@@ -43,11 +43,15 @@ y se compara con:
 
 Se calcula el error global de posición y orientación. Después, el error en X/Y se transforma al marco local del robot.
 
-El controlador utiliza el error entre la posición actual y la posición deseada para calcular el movimiento que debe realizar el robot. Para ello combina una acción proporcional, que corrige el error de posición, y una acción integral limitada, que ayuda a reducir pequeños errores que pueden mantenerse con el tiempo. También se considera el error de orientación del robot.
+El controlador utiliza el error entre la posición actual y la posición deseada para calcular el movimiento que debe realizar el robot. La ley de control PI (Proporcional-Integral) con *feedforward* implementada en el sistema de referencia del chasis es:
 
-Cuando se sigue una trayectoria, además de corregir el error de posición, se utiliza como referencia la velocidad que debería llevar el robot en cada instante. Esta información funciona como un término de *feedforward*, es decir, permite anticipar parte del movimiento necesario en lugar de esperar a que aparezca un error.
+`vx_des = 1.0 * vx_ff + 3.5 * ex + 0.4 * integral(ex)`
 
-La velocidad deseada obtenida por el controlador se transforma en los comandos de las cuatro ruedas mediante la RNA inversa.
+`vy_des = 1.0 * vy_ff + 3.5 * ey + 0.4 * integral(ey)`
+
+`omega_des = omega_ff + 2.0 * e_yaw`
+
+Donde la acción integral se limitó a un máximo de `±0.15` para evitar el fenómeno de saturación (*anti-windup*). Finalmente, esta velocidad deseada (delimitada por seguridad a 0.80 m/s y 1.80 rad/s) se transforma en los comandos de las cuatro ruedas mediante la RNA inversa.
 
 ## Seguimiento de trayectoria
 
@@ -55,8 +59,11 @@ Durante el seguimiento, el controlador combina la velocidad de referencia de la 
 
 `referencia de movimiento + corrección del error → RNA inversa → RPM de las ruedas`
 
-Antes de enviar los comandos al RoboMaster, las RPM se limitan al rango permitido de ±120 RPM y se controlan los cambios bruscos entre un instante y el siguiente. Finalmente, los valores se envían a las cuatro ruedas mediante chassis.drive_wheels(...).
+Antes de enviar los comandos al RoboMaster, las RPM generadas por la red pasan por dos filtros de seguridad en el código:
+1. Saturación absoluta: Se limitan al rango físico permitido de ±120 RPM.
+2. Filtro de tasa de cambio (*Slew rate*): Se restringe el cambio máximo a 120 RPM por cada paso de control (0.05 s) para evitar picos de corriente y respuestas erráticas.
 
+Finalmente, los valores filtrados se envían a las cuatro ruedas mediante `chassis.drive_wheels(...)`.
 ## Integración con VICON
 
 Durante las primeras pruebas apareció un problema importante: VICON puede devolver una traslación [0, 0, 0] cuando el segmento se encuentra marcado como: Occluded = True
@@ -68,7 +75,7 @@ Por esta razón se modificó la lectura para:
 1. Solicitar un nuevo frame.
 2. Comprobar los indicadores de oclusión de posición y orientación.
 3. Utilizar únicamente una pose con Occluded = False.
-4. Abortar si después de varios intentos no se obtiene una medición válida.
+4. Reintentar la lectura (con pausas de 10 ms), abortando la ejecución por seguridad si después de 50 intentos continuos el sistema sigue sin entregar una pose válida.
 
 Esta corrección fue necesaria antes de realizar las pruebas físicas finales.
 
