@@ -49,7 +49,7 @@ La diferenciación amplifica el ruido de las mediciones. Para reducir este efect
 ### Obtención de velocidades
 A partir de las posiciones registradas por VICON y del tiempo transcurrido se calcularon las velocidades del robot en los ejes globales X y Y, así como su velocidad angular.
 
-Estas velocidades se transformaron al sistema de referencia del propio RoboMaster utilizando su orientación yaw ($\psi$) mediante la siguiente matriz de rotación:
+Estas velocidades se transformaron al sistema de referencia del propio RoboMaster utilizando su orientación yaw mediante la siguiente matriz de rotación:
 
 `v_x_body = v_x_global * cos(yaw) + v_y_global * sin(yaw)`
 
