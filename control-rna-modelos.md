@@ -35,10 +35,10 @@ donde vx_body y vy_body representan las velocidades longitudinal y lateral en el
 Las capas ocultas utilizan activación SiLU y la salida es lineal. 
 
 El entrenamiento se realizó en PyTorch con las siguientes características:
-* **Optimizador:** AdamW (Learning rate = 1e-3, Weight decay = 1e-5).
-* **Función de pérdida:** Error Cuadrático Medio (MSE) sobre datos normalizados con `StandardScaler`.
-* **Regularización:** Early stopping con paciencia de 70 épocas y gradient clipping (max norm = 5.0).
-* **Batch size:** 128.
+* Optimizador: AdamW (Learning rate = 1e-3, Weight decay = 1e-5).
+* Función de pérdida: Error Cuadrático Medio (MSE) sobre datos normalizados con `StandardScaler`.
+* Regularización: Early stopping con paciencia de 70 épocas y gradient clipping (max norm = 5.0).
+* Batch size: 128.
 
 ## Dos variantes de planta
 
@@ -107,8 +107,8 @@ El entrenamiento combina dos objetivos en una función de pérdida compuesta:
 
 `L_total = L_supervisada + 0.40 * L_consistencia`
 
-1. **Pérdida supervisada (`L_supervisada`):** Penaliza la diferencia entre las RPM estimadas por la red y las RPM reales registradas en el dataset.
-2. **Consistencia física (`L_consistencia`):** Evalúa el resultado a través del siguiente ciclo:
+1. Pérdida supervisada (`L_supervisada`): Penaliza la diferencia entre las RPM estimadas por la red y las RPM reales registradas en el dataset.
+2. Consistencia física (`L_consistencia`): Evalúa el resultado a través del siguiente ciclo:
    `movimiento deseado → RNA inversa → RPM → planta directa → movimiento predicho`
    Se penaliza la diferencia entre el movimiento deseado original y el movimiento predicho final.
 
@@ -125,11 +125,9 @@ De esta manera, no basta con copiar exactamente los comandos del dataset; tambi�
 
 Las métricas por rueda muestran que el problema inverso no es completamente unívoco. Sin embargo, al evaluar el movimiento producido después de pasar los comandos por la planta directa se obtiene: 
 
-<div class="results-row" style="justify-content: center;">
-  <div class="result-highlight" style="flex: none; width: 50%;">
-    <span class="result-number">0.971</span>
-    <span class="result-description">R² global de consistencia (movimiento real)</span>
-  </div>
+<div class="result-highlight">
+  <span class="result-number">0.971</span>
+  <span class="result-description">R² global de consistencia (movimiento real)</span>
 </div>
 
 Esta métrica es especialmente relevante porque evalúa si el controlador genera un movimiento correcto, aunque las RPM no coincidan exactamente con las observadas históricamente.
