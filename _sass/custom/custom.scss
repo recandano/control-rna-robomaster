@@ -99,3 +99,22 @@
   font-size: 0.95rem;
   line-height: 1.4;
 }
+
+// Contenedor para forzar que los resultados estén en la misma fila
+.results-row {
+  display: flex;
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.results-row .result-highlight {
+  flex: 1; /* Hace que todas las tarjetas midan lo mismo de ancho */
+  margin: 0; /* Evita que los márgenes empujen las tarjetas hacia abajo */
+}
+
+// Para que en celular sí se apilen y no se vean apachurradas
+@media (max-width: 700px) {
+  .results-row {
+    flex-direction: column;
+  }
+}
