@@ -160,27 +160,25 @@ $btn-primary-color: $cyan-link;
 
 
 
+/* Estilos base para todos los botones */
 .btn,
 .btn-primary,
 .btn-blue {
   border-radius: 10px !important;
   box-shadow: none !important;
+  color: $pink-text !important; 
 }
 
-.btn-primary,
-.btn-blue {
-  background-color: #A9DDE4 !important;
-  background-image: none !important;
-
-  color: #39575D !important;
-}
-
+/* Efecto al pasar el cursor (hover) sin color rosa */
+.btn:hover,
+.btn:focus,
+.btn:active,
 .btn-primary:hover,
 .btn-blue:hover {
-  background-color: #F3D5E2 !important;
-  color: #9F607B !important;
+  color: $pink-text !important;
+  background-color: $pink-hover !important;
+  border-color: $pink-hover !important;
 }
-
 
 
 .main-content table th {
