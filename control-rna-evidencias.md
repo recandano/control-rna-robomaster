@@ -100,14 +100,15 @@ La simulación permitió comprobar que el controlador podía seguir una referenc
 
 Para la prueba con el RoboMaster real se ajustaron algunos parámetros de la referencia con respecto a la simulación. En particular, se utilizó un radio de 0.40 m y una velocidad angular aproximada de 1.3 rad/s con el objetivo de obtener un movimiento más estable durante la ejecución física.
 
-<div class="result-highlight">
-  <span class="result-number">2.25 cm</span>
-  <span class="result-description">Error radial medio absoluto</span>
-</div>
+  <div class="result-highlight" style="margin: 0;">
+    <span class="result-number">2.25 cm</span>
+    <span class="result-description">Error radial medio absoluto</span>
+  </div>
 
-<div class="result-highlight">
-  <span class="result-number">3.06 cm</span>
-  <span class="result-description">RMSE radial</span>
+  <div class="result-highlight" style="margin: 0;">
+    <span class="result-number">3.06 cm</span>
+    <span class="result-description">RMSE radial</span>
+  </div>
 </div>
 
 ## Archivos del proyecto
