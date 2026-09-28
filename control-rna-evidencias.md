@@ -29,6 +29,8 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
   <img src="{{ site.baseurl }}/assets/img/control-rna/loss_directo_esc.png"
        alt="Entrenamiento RNA directa"
        width="700">
+  <br>
+  <em>Evolución del Error Cuadrático Medio (MSE) normalizado durante el entrenamiento de la planta neuronal directa. La rápida convergencia y la estabilidad de la curva de validación (naranja) indican que el modelo generalizó correctamente la dinámica del chasis sin caer en sobreajuste.</em>
 </p>
 
 ## Entrenamiento del controlador inverso
@@ -37,6 +39,8 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
   <img src="{{ site.baseurl }}/assets/img/control-rna/loss_controlador_inverso.png"
        alt="Entrenamiento RNA inversa"
        width="700">
+  <br>
+  <em>Curva de convergencia del controlador inverso. El gráfico refleja la minimización exitosa de la función de pérdida compuesta (error supervisado + consistencia física). La detención temprana (early stopping) capturó los pesos óptimos del modelo alrededor de la época 70.</em>
 </p>
 
 ## Simulación y validación física
@@ -126,11 +130,11 @@ Los principales archivos utilizados para desarrollar y validar el sistema se enc
 
 ### Dataset experimental
 
-[Descargar dataset]({{ site.baseurl }}/assets/files/control-rna/dataset_entrenamiento.csv){: .btn .btn-blue }
+[Descargar dataset]({{ site.baseurl }}/assets/files/control-rna/dataset_entrenamiento.csv){: .btn }
 
 ### Código principal
 
-[Descargar código principal]({{ site.baseurl }}/assets/files/control-rna/control_rna_robomaster_corregido.py){: .btn .btn-blue }
+[Descargar código principal]({{ site.baseurl }}/assets/files/control-rna/control_rna_robomaster_corregido.py){: .btn }
 
 ### Registros de las pruebas físicas
 
