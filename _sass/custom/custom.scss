@@ -75,10 +75,10 @@
 }
 
 
-// Cuadros destacados para resultados de error (1.18 cm, 2.25 cm, etc.)
+// Cuadros destacados para resultados (Tonos Azules)
 .result-highlight {
-  background-color: #FCEBF2;
-  border-left: 5px solid #B96F8E;
+  background-color: #EAF8FA; 
+  border-left: 5px solid #5AA8B4; 
   border-radius: 0 12px 12px 0;
   padding: 18px 20px;
   margin: 24px 0;
@@ -87,7 +87,7 @@
 
 .result-number {
   display: block;
-  color: #B96F8E;
+  color: #5AA8B4; 
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 4px;
@@ -95,7 +95,7 @@
 
 .result-description {
   display: block;
-  color: #49636A;
+  color: #49636A; 
   font-size: 0.95rem;
   line-height: 1.4;
 }
