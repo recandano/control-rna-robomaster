@@ -158,9 +158,6 @@ $btn-primary-color: $cyan-link;
   color: #40575D;
 }
 
-
-
-/* Estilos base para todos los botones */
 .btn,
 .btn-primary,
 .btn-blue {
@@ -169,7 +166,6 @@ $btn-primary-color: $cyan-link;
   color: $pink-text !important; 
 }
 
-/* Efecto al pasar el cursor (hover) sin color rosa */
 .btn:hover,
 .btn:focus,
 .btn:active,
