@@ -109,7 +109,7 @@ Para la prueba con el RoboMaster real se ajustaron algunos parámetros de la ref
     <span class="result-number">3.06 cm</span>
     <span class="result-description">RMSE radial</span>
   </div>
-  </div>
+</div>
 
 ## Archivos del proyecto
 
