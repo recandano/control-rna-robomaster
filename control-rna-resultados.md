@@ -126,6 +126,14 @@ Cuando el controlador calcula una velocidad superior a este límite, el comando 
 
 Aunque VICON permite medir la posición del robot con buena precisión, al calcular las velocidades a partir de estas posiciones también se amplifican pequeñas variaciones de las mediciones. Para disminuir este efecto se utilizó un filtro Savitzky-Golay antes de realizar la derivación.
 
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/s_g_filtro.jpg"
+       alt="Filtro"
+       width="400">
+  <br>
+   <em>Figura 4. Filtro Savitzky-Golay durante respuesta al impulso.</em>
+</p>
+
 ### Comportamiento de la red inversa
 En el RoboMaster, un mismo movimiento puede obtenerse con combinaciones de RPM ligeramente diferentes. Por esta razón, la red inversa no necesariamente reproduce exactamente los comandos registrados durante las pruebas. Sin embargo, al evaluar el movimiento generado por estos comandos mediante la planta directa se obtuvo una consistencia considerablemente mayor.
 
