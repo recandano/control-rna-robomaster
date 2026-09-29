@@ -25,7 +25,7 @@ Se utilizó una MLP (Multilayer Perceptron) con estructura feedforward:
        alt="Perceptrón Multicapa"
        width="400">
   <br>
-   <em>Figura 1. DJI RoboMaster S1.</em>
+   <em>Figura 2. Perceptrón Multicapa.</em>
 </p>
 
 `4 → 64 → 64 → 32 → 3`
@@ -40,7 +40,15 @@ Las salidas son:
 
 donde vx_body y vy_body representan las velocidades longitudinal y lateral en el marco del robot (sistema de coordenadas del propio robot), y omega representa la velocidad angular.
 
-Las capas ocultas utilizan activación SiLU y la salida es lineal. 
+Las capas ocultas utilizan activación SiLU y la salida es lineal. A continuación una comparativa entre la función ReLU con SiLU:
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/silu_v_relu.png"
+       alt="Relu vs Silu"
+       width="400">
+  <br>
+   <em>Figura 3. Comparativa entre funciones de activación.</em>
+</p>
 
 El entrenamiento se realizó en PyTorch con las siguientes características:
 * Optimizador: AdamW (Learning rate = 1e-3, Weight decay = 1e-5).
