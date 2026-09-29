@@ -18,7 +18,15 @@ La pregunta que responde es:
 
 ### Arquitectura
 
-Se utilizó una MLP con estructura feedforward:
+Se utilizó una MLP (Multilayer Perceptron) con estructura feedforward:
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/img/control-rna/mlp.png"
+       alt="Perceptrón Multicapa"
+       width="400">
+  <br>
+   <em>Figura 1. DJI RoboMaster S1.</em>
+</p>
 
 `4 → 64 → 64 → 32 → 3`
 
