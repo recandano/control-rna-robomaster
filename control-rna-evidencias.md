@@ -2,7 +2,7 @@
 layout: default
 title: Evidencias
 parent: Reporte del proyecto
-nav_order: 6
+nav_order: 7
 permalink: /control-rna/evidencias/
 ---
 
