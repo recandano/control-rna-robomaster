@@ -29,6 +29,8 @@ El archivo original contenía 4,345 registros. Durante la limpieza se eliminó u
 
 La frecuencia de trabajo para el procesamiento y el control se estableció aproximadamente en 20 Hz, equivalente a:dt = 0.05 s
 
+---
+
 ## Preprocesamiento
 
 ### Conversión de unidades
@@ -57,6 +59,8 @@ Estas velocidades se transformaron al sistema de referencia del propio RoboMaste
 
 De esta forma, la red neuronal aprende el movimiento desde la perspectiva del robot sin depender de la dirección en la que esté orientado dentro del laboratorio.
 
+---
+
 ## División de datos
 
 El dataset se dividió temporalmente de la siguiente forma:
@@ -70,6 +74,8 @@ El dataset se dividió temporalmente de la siguiente forma:
 La división temporal evita que muestras casi idénticas y consecutivas aparezcan simultáneamente en entrenamiento y prueba.
 
 Los objetos StandardScaler se ajustaron únicamente con el conjunto de entrenamiento.
+
+---
 
 ## Retardo comando-respuesta
 Durante las pruebas se observó que el RoboMaster no respondía de forma instantánea a los comandos enviados a las ruedas. Para estimar este retraso se analizaron los datos de entrenamiento y validación, comparando el momento en que se aplicaba un comando con el instante en que comenzaba a observarse su efecto en el movimiento del robot.
