@@ -31,6 +31,8 @@ flowchart LR
     F --> G[VICON]
     G --> B
 ```
+Arquitectura del lazo de control físico. El error de pose se procesa mediante un control PI y un término de feedforward. La RNA inversa actúa como traductor de este comando espacial, calculando las velocidades (RPM) necesarias para cada una de las cuatro ruedas Mecanum del chasis. El ciclo se retroalimenta con la pose absoluta capturada por VICON.
+
 ## Control de posición
 
 En cada iteración se obtiene:
@@ -91,7 +93,7 @@ Durante las primeras pruebas se observó que la velocidad exigida provocaba satu
 
 Para la validación física se utilizó una referencia con la misma estructura, pero más adecuada para observar el comportamiento real:
 
-- Centro:(0.15, -0.20) m.
+- Centro: (0.15, -0.20) m.
 - Radio: 0.40 m.
 - Velocidad angular reducida: aproximadamente 1.3 rad/s.
 
