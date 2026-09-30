@@ -25,18 +25,55 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
 Interfaz del software de captura de movimiento durante la ejecución de la trayectoria. El sistema rastrea el segmento del robot utilizando el arreglo de cámaras infrarrojas (visibles en el entorno virtual) para calcular su pose absoluta [x, y, yaw]. Esta telemetría se transmite a 20 Hz hacia el script de control, sirviendo como la retroalimentación exacta e indispensable para evaluar el error de posición en cada instante.
 
 ## Ejecución física en el espacio de prueba
-
-<p align="center">
-  <video width="750" controls style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-    <source src="{{ site.baseurl }}/assets/img/control-rna/zacarias_circulo.mp4" type="video/mp4">
+#Prueba 1: posición y orientación de la base
+Objetivo. Solicitar una posición dentro del espacio de trabajo y un ángulo deseado para la base del robot. Durante la prueba, el chasis puede desplazarse y girar para aproximarse a la pose solicitada, utilizando VICON como retroalimentación.
+<figure style="margin: 1.5rem 0;">
+  <video controls playsinline preload="metadata"
+         aria-label="Prueba de posición y orientación de la base del RoboMaster S1"
+         poster="{{ '/assets/img/control-orientacion/control-posicion.jpg' | relative_url }}"
+         style="display: block; width: 100%; max-width: 848px; height: auto; margin: 0 auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <source src="{{ '/assets/videos/control-orientacion/ControlPosicion.mp4' | relative_url }}" type="video/mp4">
     Tu navegador no soporta la reproducción de video.
+    <a href="{{ '/assets/videos/control-orientacion/ControlPosicion.mp4' | relative_url }}">Abrir el video de posición y orientación.</a>
   </video>
-</p>
+  <figcaption style="margin-top: 12px; text-align: center; color: #6e858a; font-size: 0.95rem;">
+    Control Posición: movimiento del robot y giro de su base durante la prueba física.
+  </figcaption>
+</figure>
 
-<p align="center" style="color: #6e858a; font-size: 0.95rem; max-width: 800px; margin: 0 auto;">
-  <em>Registro en video del RoboMaster S1 físico.</em>
-</p>
-Ejecución real del seguimiento de trayectoria circular. En la grabación se aprecia la respuesta cinemática del chasis omnidireccional impulsado por los comandos del control inverso, compensando en tiempo real las inercias y el deslizamiento de las ruedas Mecanum gracias a la retroalimentación de VICON a 20 Hz.
+Qué observar en el video:
+- El desplazamiento del robot dentro del espacio de prueba.
+- Los cambios en el ángulo de la base durante el movimiento.
+- La respuesta del chasis al combinar desplazamiento y giro.
+- La posición indica dónde se encuentra el robot; la orientación indica hacia dónde apunta su base. Para solicitar únicamente un cambio de ángulo sobre el mismo punto, se mantiene la posición objetivo y se cambia la orientación deseada.
+  
+# Prueba 2: seguimiento de una trayectoria circular
+Objetivo. Hacer que el RoboMaster siga una trayectoria circular definida por las ecuaciones de referencia del programa. En esta prueba, el punto que debe seguir el robot cambia con el tiempo y el controlador corrige su movimiento a partir de las mediciones de VICON.
+<figure style="margin: 1.5rem 0;">
+  <video controls playsinline preload="metadata"
+         aria-label="Prueba del RoboMaster S1 siguiendo una trayectoria circular"
+         poster="{{ '/assets/img/control-orientacion/trayectoria-circulo.jpg' | relative_url }}"
+         style="display: block; width: 100%; max-width: 848px; height: auto; margin: 0 auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <source src="{{ '/assets/videos/control-orientacion/trayectoriaCirculo.mp4' | relative_url }}" type="video/mp4">
+    Tu navegador no soporta la reproducción de video.
+    <a href="{{ '/assets/videos/control-orientacion/trayectoriaCirculo.mp4' | relative_url }}">Abrir el video de la trayectoria circular.</a>
+  </video>
+  <figcaption style="margin-top: 12px; text-align: center; color: #6e858a; font-size: 0.95rem;">
+    Trayectoria del circulo: seguimiento físico de una referencia circular.
+  </figcaption>
+</figure>
+Qué observar en el video:
+- La forma del recorrido realizado por el robot.
+- La continuidad del movimiento durante el seguimiento.
+- La orientación de la base mientras el chasis se desplaza por el círculo.
+- Recorrer un círculo y girar la base sobre sí misma son movimientos distintos. 
+- Las ruedas Mecanum permiten combinar el desplazamiento del robot con el control de su orientación.
+
+# Comparación de las pruebas
+| Prueba | Referencia solicitada | Qué se observa |
+| :--- | :--- | :--- |
+| Posición y orientación | Un punto y un ángulo deseados | Desplazamiento y giro de la base |
+| Trayectoria circular | Una posición que cambia con el tiempo | Seguimiento de un recorrido circular |
 
 ## Entrenamiento de la RNA directa
 
