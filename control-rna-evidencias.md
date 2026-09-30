@@ -22,6 +22,7 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
 <p align="center">
   <em>Seguimiento del RoboMaster S1 registrado durante la prueba con VICON.</em>
 </p>
+Interfaz del software de captura de movimiento durante la ejecución de la trayectoria. El sistema rastrea el segmento del robot utilizando el arreglo de cámaras infrarrojas (visibles en el entorno virtual) para calcular su pose absoluta [x, y, yaw]. Esta telemetría se transmite a 20 Hz hacia el script de control, sirviendo como la retroalimentación exacta e indispensable para evaluar el error de posición en cada instante.
 
 ## Ejecución física en el espacio de prueba
 
@@ -33,8 +34,9 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
 </p>
 
 <p align="center" style="color: #6e858a; font-size: 0.95rem; max-width: 800px; margin: 0 auto;">
-  <em><strong>Registro en video del RoboMaster S1 físico:</strong> Ejecución real del seguimiento de trayectoria circular. En la grabación se aprecia la respuesta cinemática del chasis omnidireccional impulsado por los comandos del control inverso, compensando en tiempo real las inercias y el deslizamiento de las ruedas Mecanum gracias a la retroalimentación de VICON a 20 Hz.</em>
+  <em>Registro en video del RoboMaster S1 físico.</em>
 </p>
+Ejecución real del seguimiento de trayectoria circular. En la grabación se aprecia la respuesta cinemática del chasis omnidireccional impulsado por los comandos del control inverso, compensando en tiempo real las inercias y el deslizamiento de las ruedas Mecanum gracias a la retroalimentación de VICON a 20 Hz.
 
 ## Entrenamiento de la RNA directa
 
