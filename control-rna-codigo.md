@@ -12,7 +12,7 @@ El script `control_rna_robomaster_corregido.py` es el núcleo de ejecución del 
 
 A continuación, se desglosan los bloques lógicos fundamentales que componen el algoritmo de control físico.
 
-## 1. Inicialización y conexiones
+## Inicialización y conexiones
 El sistema requiere establecer dos enlaces de comunicación críticos de baja latencia antes de comenzar el movimiento: la conexión Ethernet al servidor VICON para la retroalimentación y el socket Wi-Fi local hacia el RoboMaster S1.
 
 ```python
