@@ -2,7 +2,7 @@
 layout: default
 title: Ejecución física
 parent: Reporte del proyecto
-nav_order: 5
+nav_order: 6
 permalink: /control-rna/ejecucion/
 ---
 
