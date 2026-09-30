@@ -25,7 +25,7 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
 Interfaz del software de captura de movimiento durante la ejecución de la trayectoria. El sistema rastrea el segmento del robot utilizando el arreglo de cámaras infrarrojas (visibles en el entorno virtual) para calcular su pose absoluta [x, y, yaw]. Esta telemetría se transmite a 20 Hz hacia el script de control, sirviendo como la retroalimentación exacta e indispensable para evaluar el error de posición en cada instante.
 
 ## Ejecución física en el espacio de prueba
-#Prueba 1: posición y orientación de la base
+# Prueba 1: posición y orientación de la base
 Objetivo. Solicitar una posición dentro del espacio de trabajo y un ángulo deseado para la base del robot. Durante la prueba, el chasis puede desplazarse y girar para aproximarse a la pose solicitada, utilizando VICON como retroalimentación.
 <figure style="margin: 1.5rem 0;">
   <video controls playsinline preload="metadata"
