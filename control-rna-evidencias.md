@@ -13,7 +13,7 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
 ## Sistema VICON
 
 <p align="center">
-  <video width="750" controls>
+  <video width="750" controls style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
     <source src="{{ site.baseurl }}/assets/img/control-rna/circulobien.mp4" type="video/mp4">
     Tu navegador no soporta la reproducción de video.
   </video>
