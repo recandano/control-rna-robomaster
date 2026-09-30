@@ -2,7 +2,7 @@
 layout: default
 title: Resultados y análisis
 parent: Reporte del proyecto
-nav_order: 4
+nav_order: 5
 permalink: /control-rna/resultados/
 ---
 
