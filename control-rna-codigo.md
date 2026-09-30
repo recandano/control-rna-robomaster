@@ -49,6 +49,7 @@ El corazón del sistema es un bucle iterativo restringido a ejecutarse cada 0.05
 1. Retroalimentación espacial: Se solicita la pose absoluta [x, y, yaw] a VICON. Si el sistema reporta oclusión (Occluded=True), el comando espera por seguridad.
 2. Cálculo del error: Se compara la medición con la referencia paramétrica de la trayectoria.
 3. Dinámica de control: El bloque controlador transforma el error en un diferencial de pose local y la RNA inversa calcula los comandos ideales de rueda.
+
 ```python
 while True:
     elapsed = time.perf_counter() - t0
@@ -82,9 +83,12 @@ while True:
 ```
 
 ## Protección de hardware y Slew Rate
+
 Las redes neuronales pueden generar comandos matemáticamente correctos pero físicamente inviables (como aceleraciones instantáneas). Para proteger el hardware, el código implementa dos filtros antes de transmitir los comandos finales:
+
 - Saturación: Limita las salidas a la capacidad máxima de los motores (±120 RPM).
--Filtro Slew Rate: Restringe la tasa máxima de cambio de velocidad entre ciclos consecutivos. Esto evita picos altos de corriente en la batería y previene que los rodillos Mecanum patinen por pérdida de tracción.
+- Filtro Slew Rate: Restringe la tasa máxima de cambio de velocidad entre ciclos consecutivos. Esto evita picos altos de corriente en la batería y previene que los rodillos Mecanum patinen por pérdida de tracción.
+
 ```python
 # Predicción de la RNA con primera saturación a ±120 RPM
 rpm = np.clip(
@@ -107,4 +111,3 @@ rpm = np.clip(
     self.cfg.rpm_limit,
 )
 self.previous_rpm = rpm.copy()
-```
