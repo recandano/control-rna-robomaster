@@ -25,7 +25,7 @@ Se utilizó una MLP (Multilayer Perceptron) con estructura feedforward:
        alt="Perceptrón Multicapa"
        width="400">
   <br>
-   <em>Figura 2. Perceptrón Multicapa.</em>
+   <em>Perceptrón Multicapa.</em>
 </p>
 
 `4 → 64 → 64 → 32 → 3`
@@ -47,7 +47,7 @@ Las capas ocultas utilizan activación SiLU y la salida es lineal. A continuaci�
        alt="Relu vs Silu"
        width="400">
   <br>
-   <em>Figura 3. Comparativa entre funciones de activación.</em>
+   <em>Comparativa entre funciones de activación.</em>
 </p>
 
 El entrenamiento se realizó en PyTorch con las siguientes características:
