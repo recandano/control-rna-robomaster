@@ -92,6 +92,8 @@ La trayectoria medida por VICON se comparó con el círculo geométrico esperado
   <em>Comparación entre la referencia circular y el movimiento obtenido.</em>
 </p>
 
+---
+
 ### Métricas
 
 | Métrica | Resultado |
@@ -103,6 +105,8 @@ La trayectoria medida por VICON se comparó con el círculo geométrico esperado
 | Error medio / radio | **5.6 %** |
 
 La trayectoria obtenida mantiene en general la forma circular esperada. Las mayores diferencias aparecen principalmente durante los cambios de movimiento y al inicio del seguimiento, mientras que durante la mayor parte del recorrido el error se mantiene considerablemente menor.
+
+---
 
 ## Análisis de errores
 
@@ -141,6 +145,8 @@ En el RoboMaster, un mismo movimiento puede obtenerse con combinaciones de RPM l
 
 Los resultados de las pruebas físicas muestran que el controlador fue capaz de cumplir los dos objetivos principales del proyecto. En la prueba de posicionamiento, el RoboMaster logró llegar al punto solicitado con un error final del orden de centímetros. Por otro lado, durante el seguimiento de trayectoria, el robot consiguió conservar la forma circular de referencia con un error relativamente pequeño respecto al radio utilizado.
 Estos resultados muestran que las redes neuronales no se utilizaron únicamente para representar el comportamiento del RoboMaster en simulación, sino que también formaron parte del controlador utilizado directamente sobre el robot físico.
+
+---
 
 ## Conclusiones
 
