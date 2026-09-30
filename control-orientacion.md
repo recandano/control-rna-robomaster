@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Control de orientación
-nav_order: 3
+parent: Reporte del proyecto
+nav_order: 7
 permalink: /control-orientacion/
 ---
 
