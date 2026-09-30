@@ -114,7 +114,7 @@ El movimiento del RoboMaster depende del contacto de los rodillos de las ruedas 
 Las RPM que se envían como comando a las ruedas no siempre son exactamente iguales a las velocidades que realmente alcanzan los motores. Por esta razón se utilizaron dos modelos directos: uno basado en los comandos enviados y otro basado en las velocidades medidas por los ESC.
 
 ### Retardo en la respuesta
-También se observó un retraso aproximado de 0.10 s entre el momento en que se envía un comando y el instante en que se observa su efecto en el movimiento del robot. Este retardo puede afectar principalmente el seguimiento de trayectorias cuando la referencia cambia rápidamente
+También se observó un retraso aproximado de 0.10 s entre el momento en que se envía un comando y el instante en que se observa su efecto en el movimiento del robot. Este retardo puede afectar principalmente el seguimiento de trayectorias cuando la referencia cambia rápidamente.
 
 ### Saturación de los motores 
 
@@ -131,7 +131,7 @@ Aunque VICON permite medir la posición del robot con buena precisión, al calcu
        alt="Filtro"
        width="400">
   <br>
-   <em>Figura 4. Filtro Savitzky-Golay durante respuesta al impulso.</em>
+   <em>Filtro Savitzky-Golay durante respuesta al impulso.</em>
 </p>
 
 ### Comportamiento de la red inversa
