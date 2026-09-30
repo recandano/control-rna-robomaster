@@ -45,8 +45,9 @@ Ejecución real del seguimiento de trayectoria circular. En la grabación se apr
        alt="Entrenamiento RNA directa"
        width="700">
   <br>
-  <em>Evolución del Error Cuadrático Medio (MSE) normalizado durante el entrenamiento de la planta neuronal directa. La rápida convergencia y la estabilidad de la curva de validación (naranja) indican que el modelo generalizó correctamente la dinámica del chasis sin caer en sobreajuste.</em>
+  <em>Evolución del Error Cuadrático Medio (MSE) normalizado durante el entrenamiento de la planta neuronal directa.</em>
 </p>
+La rápida convergencia y la estabilidad de la curva de validación (naranja) indican que el modelo generalizó correctamente la dinámica del chasis sin caer en sobreajuste.
 
 ## Entrenamiento del controlador inverso
 
@@ -55,8 +56,9 @@ Ejecución real del seguimiento de trayectoria circular. En la grabación se apr
        alt="Entrenamiento RNA inversa"
        width="700">
   <br>
-  <em>Curva de convergencia del controlador inverso. El gráfico refleja la minimización exitosa de la función de pérdida compuesta (error supervisado + consistencia física). La detención temprana (early stopping) capturó los pesos óptimos del modelo alrededor de la época 70.</em>
+  <em>Curva de convergencia del controlador inverso.</em>
 </p>
+El gráfico refleja la minimización exitosa de la función de pérdida compuesta (error supervisado + consistencia física). La detención temprana (early stopping) capturó los pesos óptimos del modelo alrededor de la época 70.
 
 ## Simulación y validación física
 
