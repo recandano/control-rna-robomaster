@@ -23,6 +23,19 @@ Esta sección enseña las principales evidencias utilizadas para documentar y va
   <em>Seguimiento del RoboMaster S1 registrado durante la prueba con VICON.</em>
 </p>
 
+## Ejecución física en el espacio de prueba
+
+<p align="center">
+  <video width="750" controls style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <source src="{{ site.baseurl }}/assets/img/control-rna/zacarias_circulo.mp4" type="video/mp4">
+    Tu navegador no soporta la reproducción de video.
+  </video>
+</p>
+
+<p align="center" style="color: #6e858a; font-size: 0.95rem; max-width: 800px; margin: 0 auto;">
+  <em><strong>Registro en video del RoboMaster S1 físico:</strong> Ejecución real del seguimiento de trayectoria circular. En la grabación se aprecia la respuesta cinemática del chasis omnidireccional impulsado por los comandos del control inverso, compensando en tiempo real las inercias y el deslizamiento de las ruedas Mecanum gracias a la retroalimentación de VICON a 20 Hz.</em>
+</p>
+
 ## Entrenamiento de la RNA directa
 
 <p align="center">
