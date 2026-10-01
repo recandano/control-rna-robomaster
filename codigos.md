@@ -27,7 +27,7 @@ Este programa se utilizó durante la primera etapa del proyecto para conectar si
 
 El código envía diferentes comandos de movimiento al robot, registra las velocidades de las cuatro ruedas y almacena al mismo tiempo la posición y orientación obtenidas mediante VICON. Con esta información se genera el dataset utilizado posteriormente para la identificación neuronal del sistema.
 
-[Descargar código de adquisición]({{ site.baseurl }}/assets/files/control-rna/adquisicion_dataset_robomaster_vicon.py){: .btn .btn-blue }
+[Descargar código de adquisición]({{ site.baseurl }}/assets/files/control-rna/adquisicion_dataset_robomaster_vicon.py){: .btn  }
 
 ## Dataset experimental
 
@@ -39,11 +39,15 @@ Dataset obtenido a partir de las pruebas realizadas con el RoboMaster y utilizad
 
 Este código contiene el procesamiento de los datos, entrenamiento de las redes neuronales, simulación del sistema y las rutinas utilizadas para realizar las pruebas físicas con el RoboMaster.
 
-[Descargar código principal]({{ site.baseurl }}/assets/files/control-rna/control_rna_robomaster_corregido.py){: .btn .btn-blue }
+[Descargar código principal]({{ site.baseurl }}/assets/files/control-rna/control_rna_robomaster_corregido.py){: .btn }
 
 ## Registros de las pruebas físicas
 
 Los siguientes archivos contienen los datos registrados mediante VICON durante las pruebas finales realizadas con el robot.
+
+### Dataset usado para entrenar la red de sincronización de VICON
+
+[Descargar dataset sincronización({{ site.baseurl }}/assets/files/control-rna/robomaster_dataset_20260924_140657){: .btn }
 
 ### Control de posición
 
