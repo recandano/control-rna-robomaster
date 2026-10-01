@@ -45,10 +45,11 @@ El portafolio se encuentra dividido en las siguientes secciones:
 - [Modelos neuronales]({{ site.baseurl }}/control-rna/modelos/)
 - [Control en lazo cerrado]({{ site.baseurl }}/control-rna/control/)
 - [Control de orientación]({{ site.baseurl }}/control-rna/orientacion/)
+- [Código principal]({{ site.baseurl }}/control-rna/codigo/)
 - [Resultados y análisis]({{ site.baseurl }}/control-rna/resultados/)
 - [Ejecución física]({{ site.baseurl }}/control-rna/ejecucion/)
 - [Evidencias]({{ site.baseurl }}/control-rna/evidencias/)
-- [Códigos]({{ site.baseurl }}/codigos/)
+- [Códigos/Datasets]({{ site.baseurl }}/codigos/)
 - [Contribuciones del equipo]({{ site.baseurl }}/contribuciones/)
 
 
