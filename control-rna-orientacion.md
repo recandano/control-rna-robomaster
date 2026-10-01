@@ -10,7 +10,7 @@ permalink: /control-rna/orientacion/
 
 El chasis del RoboMaster S1 utiliza ruedas Mecanum, lo que le otorga capacidades de movimiento omnidireccional. Esto permite desacoplar la traslación en el plano (movimientos en X y Y) de la rotación sobre su propio eje vertical (orientación o *yaw*). 
 
-En este proyecto, el control de la orientación no se resolvió mediante cinemática analítica, sino que se integró directamente en el aprendizaje de la Red Neuronal Artificial.
+En este proyecto, el control de la orientación no se resolvió mediante cinemática analítica, sino que se integró directamente en el aprendizaje de la Red Neuronal Artificial Inversa.
 
 ## Medición y cálculo del error
 
@@ -32,9 +32,9 @@ El término `dyaw` representa la cantidad de rotación pura requerida.
 
 ## Generación de comandos de rueda
 
-A partir de la entrada `[dx_body, dy_body, dyaw]`, el control inverso (compuesto por capas lineales con activación SiLU) computa la velocidad angular necesaria para cada uno de los cuatro motores. 
+A partir de la entrada `[dx_body, dy_body, dyaw]`, la RNA inversa (compuesta por capas lineales con activación SiLU) computa la velocidad angular necesaria para cada uno de los cuatro motores. 
 
-Salida del control inverso: `[w1, w2, w3, w4]` expresada en RPM.
+Salida de la RNA inversa: `[w1, w2, w3, w4]` expresada en RPM.
 
 Gracias a que la red fue entrenada con datos experimentales que capturan la dinámica real del chasis, el modelo neuronal "sabe" implícitamente que para generar un movimiento de rotación pura sobre su propio eje sin traslación, debe comandar las ruedas de un lado en sentido opuesto a las del otro lado, superando la fricción estática y el deslizamiento característico de los rodillos Mecanum.
 
