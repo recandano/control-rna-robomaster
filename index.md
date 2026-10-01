@@ -36,6 +36,19 @@ Para el seguimiento de una trayectoria circular de radio 0.40 m se obtuvo:
 - RMSE radial: 3.06 cm
 - Error radial máximo: 8.11 cm
 
-Consulta el Reporte del proyecto en el menú lateral para consultar la metodología, modelos neuronales,
-controlador y resultados experimentales.
+
+## Contenido del proyecto
+
+El portafolio se encuentra dividido en las siguientes secciones:
+
+- [Metodología y datos]({{ site.baseurl }}/control-rna/metodologia/)
+- [Modelos neuronales]({{ site.baseurl }}/control-rna/modelos/)
+- [Control en lazo cerrado]({{ site.baseurl }}/control-rna/control/)
+- [Control de orientación]({{ site.baseurl }}/control-rna/orientacion/)
+- [Resultados y análisis]({{ site.baseurl }}/control-rna/resultados/)
+- [Ejecución física]({{ site.baseurl }}/control-rna/ejecucion/)
+- [Evidencias]({{ site.baseurl }}/control-rna/evidencias/)
+- [Códigos]({{ site.baseurl }}/codigos/)
+- [Contribuciones del equipo]({{ site.baseurl }}/contribuciones/)
+
 
