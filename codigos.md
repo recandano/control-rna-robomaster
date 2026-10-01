@@ -23,7 +23,7 @@ En esta sección se encuentran los principales códigos, datasets y registros ut
 
 ## Código de adquisición de datos
 
-Este programa se utilizó durante la primera etapa del proyecto para conectar simultáneamente el **RoboMaster S1** y el sistema **VICON**.
+Este programa se utilizó durante la primera etapa del proyecto para conectar simultáneamente el RoboMaster S1 y el sistema VICON.
 
 El código envía diferentes comandos de movimiento al robot, registra las velocidades de las cuatro ruedas y almacena al mismo tiempo la posición y orientación obtenidas mediante VICON. Con esta información se genera el dataset utilizado posteriormente para la identificación neuronal del sistema.
 
