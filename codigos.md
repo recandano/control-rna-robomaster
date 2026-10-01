@@ -47,7 +47,7 @@ Los siguientes archivos contienen los datos registrados mediante VICON durante l
 
 ### Dataset usado para entrenar la red de sincronización de VICON
 
-[Descargar dataset sincronización({{ site.baseurl }}/assets/files/control-rna/robomaster_dataset_20260924_140657){: .btn }
+[Descargar dataset sincronización]({{ site.baseurl }}/assets/files/control-rna/robomaster_dataset_20260924_140657){: .btn }
 
 ### Control de posición
 
