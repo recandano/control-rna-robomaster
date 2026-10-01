@@ -173,29 +173,3 @@ Para la prueba con el RoboMaster real se ajustaron algunos parámetros de la ref
   </div>
 </div>
 
-## Archivos del proyecto
-
-Los principales archivos utilizados para desarrollar y validar el sistema se encuentran disponibles a continuación.
-
-| Archivo | Descripción |
-|---|---|
-| Dataset experimental | Registro utilizado para entrenar las redes neuronales |
-| Código principal | Identificación, entrenamiento, simulación y control físico |
-| Prueba de posicionamiento | Registro VICON de la llegada al punto objetivo |
-| Prueba circular | Registro VICON del seguimiento de trayectoria |
-| Análisis experimental | Script utilizado para generar las comparativas |
-| Métricas | Resultados de entrenamiento y validación |
-
-### Dataset experimental
-
-[Descargar dataset]({{ site.baseurl }}/assets/files/control-rna/dataset_entrenamiento.csv){: .btn }
-
-### Código principal
-
-[Descargar código principal]({{ site.baseurl }}/assets/files/control-rna/control_rna_robomaster_corregido.py){: .btn }
-
-### Registros de las pruebas físicas
-
-[Descargar dataset prueba de posicionamiento]({{ site.baseurl }}/assets/files/control-rna/trayectoria_punto_vicon.csv){: .btn }
-
-[Descargar dataset prueba circular]({{ site.baseurl }}/assets/files/control-rna/trayectoria_circulo_vicon.csv){: .btn }
