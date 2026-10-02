@@ -14,7 +14,7 @@ En esta sección se describen las principales aportaciones realizadas por cada i
 | Integrante | Contribución |
 |---|---|
 | Regina Cándano | Promt para el desarrollo del código principal, revisión y corrección del código principal, entrenamiento de las redes neuronales, simulación y control del RoboMaster. Realización de pruebas físicas, mediciones con VICON, análisis de resultados y desarrollo del portafolio web. |
-| Valerie Santos |  |
+| Valerie Santos | Revisión y corrección del código principal, realización de pruebas físicas y desarrollo del portafolio web. |
 | Diego Bravo |  |
 | Omar Rodríguez |  |
 | Joel Rio Valle |  |
