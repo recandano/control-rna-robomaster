@@ -17,5 +17,5 @@ En esta sección se describen las principales aportaciones realizadas por cada i
 | Valerie Santos | Revisión y corrección del código principal, realización de pruebas físicas y desarrollo del portafolio web. |
 | Diego Bravo |  |
 | Omar Rodríguez |  |
-| Joel Rio Valle |  |
+| Joel Rio Valle | Realización de pruebas físicas, mediciones con VICON, entrenamiento de red neuronal, ajustes en portafolio web.
 
